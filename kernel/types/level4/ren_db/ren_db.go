@@ -20,8 +20,8 @@ import (
 	// Level 5.1
 	ren_id "github.com/muzudho/kifuwarabe-uec17/kernel/level_5_game_technic/sublevel_1/ren_id"
 
-	//
-	ren_db_doc_header "github.com/muzudho/kifuwarabe-uec17/kernel/types/level3/ren_db_doc_header"
+	// Level 6.1
+	ren_db_doc_header "github.com/muzudho/kifuwarabe-uec17/kernel/level_6_database/sublevel_1/ren_db_doc_header"
 )
 
 // RenDb - 連データベース
