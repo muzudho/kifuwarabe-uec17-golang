@@ -12,14 +12,17 @@ import (
 
 	// Kernel
 	kernel_core "github.com/muzudho/kifuwarabe-uec17/kernel/core"
-	logger "github.com/muzudho/kifuwarabe-uec17/kernel/level_1_for_maintenance/logger"
 
 	// Level 1
-	moves_num "github.com/muzudho/kifuwarabe-uec17/kernel/level_2_conceptual/sublevel_1/moves_num"
-	komi_float "github.com/muzudho/kifuwarabe-uec17/kernel/types/level1/komi_float"
+	logger "github.com/muzudho/kifuwarabe-uec17/kernel/level_1_for_maintenance/logger"
 
-	// Level 2
+	// Level 2.1
+	komi_float "github.com/muzudho/kifuwarabe-uec17/kernel/level_2_conceptual/sublevel_1/komi_float"
+	moves_num "github.com/muzudho/kifuwarabe-uec17/kernel/level_2_conceptual/sublevel_1/moves_num"
+
+	// Level 3.1
 	stone "github.com/muzudho/kifuwarabe-uec17/kernel/level_3_physical/sublevel_1/stone"
+
 	game_rule_settings "github.com/muzudho/kifuwarabe-uec17/kernel/types/level2/game_rule_settings"
 )
 

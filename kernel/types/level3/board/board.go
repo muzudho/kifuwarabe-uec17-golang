@@ -5,9 +5,12 @@ import (
 	color "github.com/muzudho/kifuwarabe-uec17/kernel/level_2_conceptual/sublevel_1/color"
 	point "github.com/muzudho/kifuwarabe-uec17/kernel/level_2_conceptual/sublevel_1/point"
 
-	// Level 2
+	// Level 2.2
 	board_coordinate "github.com/muzudho/kifuwarabe-uec17/kernel/level_2_conceptual/sublevel_2/board_coordinate"
+
+	// Level 3.1
 	stone "github.com/muzudho/kifuwarabe-uec17/kernel/level_3_physical/sublevel_1/stone"
+
 	game_rule_settings "github.com/muzudho/kifuwarabe-uec17/kernel/types/level2/game_rule_settings"
 )
 
