@@ -4,14 +4,16 @@ import (
 	"math"
 	"strconv"
 
-	// Level 1
-	"github.com/muzudho/kifuwarabe-uec17/kernel/level_2_conceptual/sublevel_1/geta"
+	// Level 2.1
+	geta "github.com/muzudho/kifuwarabe-uec17/kernel/level_2_conceptual/sublevel_1/geta"
 	moves_num "github.com/muzudho/kifuwarabe-uec17/kernel/level_2_conceptual/sublevel_1/moves_num"
 	point "github.com/muzudho/kifuwarabe-uec17/kernel/level_2_conceptual/sublevel_1/point"
 
-	// Level 2
+	// Level 3.1
 	stone "github.com/muzudho/kifuwarabe-uec17/kernel/level_3_physical/sublevel_1/stone"
-	record_item "github.com/muzudho/kifuwarabe-uec17/kernel/types/level2/record_item"
+
+	// Level 6.1
+	record_item "github.com/muzudho/kifuwarabe-uec17/kernel/level_6_database/sublevel_1/record_item"
 )
 
 // Record - 棋譜

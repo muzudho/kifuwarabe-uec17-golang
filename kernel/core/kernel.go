@@ -25,8 +25,9 @@ import (
 	// Level 4.1
 	game_rule_settings "github.com/muzudho/kifuwarabe-uec17/kernel/level_4_game_rule/sublevel_1/game_rule_settings"
 
-	//
-	record_item "github.com/muzudho/kifuwarabe-uec17/kernel/types/level2/record_item"
+	// Level 6.1
+	record_item "github.com/muzudho/kifuwarabe-uec17/kernel/level_6_database/sublevel_1/record_item"
+
 	record "github.com/muzudho/kifuwarabe-uec17/kernel/types/level3/record"
 	position "github.com/muzudho/kifuwarabe-uec17/kernel/types/level4/position"
 	ren_db "github.com/muzudho/kifuwarabe-uec17/kernel/types/level4/ren_db"
