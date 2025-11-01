@@ -28,7 +28,10 @@ import (
 	// Level 6.1
 	record_item "github.com/muzudho/kifuwarabe-uec17/kernel/level_6_database/sublevel_1/record_item"
 
-	record "github.com/muzudho/kifuwarabe-uec17/kernel/types/level3/record"
+	// Level 6.2
+	record "github.com/muzudho/kifuwarabe-uec17/kernel/level_6_database/sublevel_2/record"
+
+	//
 	position "github.com/muzudho/kifuwarabe-uec17/kernel/types/level4/position"
 	ren_db "github.com/muzudho/kifuwarabe-uec17/kernel/types/level4/ren_db"
 )
