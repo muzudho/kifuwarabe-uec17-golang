@@ -2,6 +2,7 @@ package kernel
 
 import (
 	// Level 1
+	mark "github.com/muzudho/kifuwarabe-uec17/kernel/types/level1/mark"
 	point "github.com/muzudho/kifuwarabe-uec17/kernel/types/level1/point"
 
 	// Level 2
@@ -10,6 +11,7 @@ import (
 
 	// Level 3
 	board "github.com/muzudho/kifuwarabe-uec17/kernel/types/level3/board"
+	check_board "github.com/muzudho/kifuwarabe-uec17/kernel/types/level3/check_board"
 	rentype "github.com/muzudho/kifuwarabe-uec17/kernel/types/level3/ren"
 )
 
@@ -38,17 +40,17 @@ type LibertySearchAlgorithm struct {
 	// 盤
 	board *board.Board
 	// チェック盤
-	checkBoard *CheckBoard
+	checkBoard *check_board.CheckBoard
 	// foundRen - 呼吸点の探索時に使います
 	foundRen *rentype.Ren
 }
 
 // NewLibertySearchAlgorithm - 新規作成
-func NewLibertySearchAlgorithm(board *board.Board, checkBoard *CheckBoard) *LibertySearchAlgorithm {
+func NewLibertySearchAlgorithm(board *board.Board, checkBoard1 *check_board.CheckBoard) *LibertySearchAlgorithm {
 	var ls = new(LibertySearchAlgorithm)
 
 	ls.board = board
-	ls.checkBoard = checkBoard
+	ls.checkBoard = checkBoard1
 
 	return ls
 }
@@ -61,7 +63,7 @@ func NewLibertySearchAlgorithm(board *board.Board, checkBoard *CheckBoard) *Libe
 // - bool is found
 func (ls *LibertySearchAlgorithm) findRen(arbitraryPoint point.Point) (*rentype.Ren, bool) {
 	// 探索済みならスキップ
-	if ls.checkBoard.Contains(arbitraryPoint, Mark_BitStone) {
+	if ls.checkBoard.Contains(arbitraryPoint, mark.Mark_BitStone) {
 		return nil, false
 	}
 
@@ -75,7 +77,7 @@ func (ls *LibertySearchAlgorithm) findRen(arbitraryPoint point.Point) (*rentype.
 
 		// チェックボードの「呼吸点」チェックのみクリアー
 		var eachPoint = func(point point.Point) {
-			ls.checkBoard.Erase(point, Mark_BitLiberty)
+			ls.checkBoard.Erase(point, mark.Mark_BitLiberty)
 		}
 		ls.board.Coordinate.ForeachCellWithoutWall(eachPoint)
 	}
@@ -89,7 +91,7 @@ func (ls *LibertySearchAlgorithm) findRen(arbitraryPoint point.Point) (*rentype.
 func (ls *LibertySearchAlgorithm) searchStoneRenRecursive(here point.Point) {
 
 	// 石のチェック
-	ls.checkBoard.Overwrite(here, Mark_BitStone)
+	ls.checkBoard.Overwrite(here, mark.Mark_BitStone)
 
 	ls.foundRen.AddLocation(here)
 
@@ -100,8 +102,8 @@ func (ls *LibertySearchAlgorithm) searchStoneRenRecursive(here point.Point) {
 		switch stone1 {
 
 		case stone.Stone_Space: // 空点
-			if !ls.checkBoard.Contains(p, Mark_BitLiberty) { // まだチェックしていない呼吸点なら
-				ls.checkBoard.Overwrite(p, Mark_BitLiberty)
+			if !ls.checkBoard.Contains(p, mark.Mark_BitLiberty) { // まだチェックしていない呼吸点なら
+				ls.checkBoard.Overwrite(p, mark.Mark_BitLiberty)
 				ls.foundRen.LibertyLocations = append(ls.foundRen.LibertyLocations, p) // 呼吸点を追加
 			}
 
@@ -112,7 +114,7 @@ func (ls *LibertySearchAlgorithm) searchStoneRenRecursive(here point.Point) {
 		}
 
 		// 探索済みの石ならスキップ
-		if ls.checkBoard.Contains(p, Mark_BitStone) {
+		if ls.checkBoard.Contains(p, mark.Mark_BitStone) {
 			return
 		}
 
@@ -132,12 +134,12 @@ func (ls *LibertySearchAlgorithm) searchStoneRenRecursive(here point.Point) {
 // 空点の連の探索
 // - 再帰関数
 func (ls *LibertySearchAlgorithm) searchSpaceRen(here point.Point) {
-	ls.checkBoard.Overwrite(here, Mark_BitStone)
+	ls.checkBoard.Overwrite(here, mark.Mark_BitStone)
 	ls.foundRen.AddLocation(here)
 
 	var eachAdjacent = func(dir board_coordinate.Cell_4Directions, p point.Point) {
 		// 探索済みならスキップ
-		if ls.checkBoard.Contains(p, Mark_BitStone) {
+		if ls.checkBoard.Contains(p, mark.Mark_BitStone) {
 			return
 		}
 

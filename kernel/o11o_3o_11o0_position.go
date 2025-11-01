@@ -6,6 +6,7 @@ import (
 
 	// Level 3
 	board "github.com/muzudho/kifuwarabe-uec17/kernel/types/level3/board"
+	check_board "github.com/muzudho/kifuwarabe-uec17/kernel/types/level3/check_board"
 )
 
 type Position struct {
@@ -14,7 +15,7 @@ type Position struct {
 
 	// [O22o2o3o0]
 	// CheckBoard - 呼吸点の探索時に使います
-	CheckBoard *CheckBoard
+	CheckBoard *check_board.CheckBoard
 
 	// CanNotPutOnMyEye - [O22o4o1o0] 自分の眼に石を置くことはできません
 	CanNotPutOnMyEye bool
@@ -28,7 +29,7 @@ func NewDirtyPosition(gameRuleSettings game_rule_settings.GameRuleSettings, boar
 	p.Board = board.NewBoard(gameRuleSettings, boardWidht, boardHeight)
 
 	// [O22o2o3o0] チェックボード
-	p.CheckBoard = NewDirtyCheckBoard()
+	p.CheckBoard = check_board.NewDirtyCheckBoard()
 
 	return p
 }
