@@ -13,6 +13,7 @@ import (
 	point "github.com/muzudho/kifuwarabe-uec17/kernel/types/level1/point"
 
 	// Level 2
+	game_rule_settings "github.com/muzudho/kifuwarabe-uec17/kernel/types/level2/game_rule_settings"
 	record_item "github.com/muzudho/kifuwarabe-uec17/kernel/types/level2/record_item"
 	stone "github.com/muzudho/kifuwarabe-uec17/kernel/types/level2/stone"
 
@@ -35,10 +36,10 @@ type Kernel struct {
 
 // NewDirtyKernel - カーネルの新規作成
 // - 一部のメンバーは、初期化されていないので、別途初期化処理が要る
-func NewDirtyKernel(gameRule GameRule, boardWidht int, boardHeight int, maxMovesNum moves_num.MovesNum, playFirst stone.Stone) *Kernel {
+func NewDirtyKernel(gameRuleSettings game_rule_settings.GameRuleSettings, boardWidht int, boardHeight int, maxMovesNum moves_num.MovesNum, playFirst stone.Stone) *Kernel {
 
 	var k = new(Kernel)
-	k.Position = NewDirtyPosition(gameRule, boardWidht, boardHeight)
+	k.Position = NewDirtyPosition(gameRuleSettings, boardWidht, boardHeight)
 
 	// [O12o__11o_2o0] 棋譜の初期化
 	k.Record = *NewRecord(maxMovesNum, k.Position.Board.coordinate.GetMemoryArea(), playFirst)

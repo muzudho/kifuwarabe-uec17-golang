@@ -1,6 +1,6 @@
-// BOF [O11o_3o_11o1o0]
-
 package kernel
+
+import game_rule_settings "github.com/muzudho/kifuwarabe-uec17/kernel/types/level2/game_rule_settings"
 
 type Position struct {
 	// Board - 盤
@@ -16,15 +16,13 @@ type Position struct {
 
 // NewDirtyKernel - カーネルの新規作成
 // - 一部のメンバーは、初期化されていないので、別途初期化処理が要る
-func NewDirtyPosition(gameRule GameRule, boardWidht int, boardHeight int) *Position {
+func NewDirtyPosition(gameRuleSettings game_rule_settings.GameRuleSettings, boardWidht int, boardHeight int) *Position {
 	var p = new(Position)
 
-	p.Board = NewBoard(gameRule, boardWidht, boardHeight)
+	p.Board = NewBoard(gameRuleSettings, boardWidht, boardHeight)
 
 	// [O22o2o3o0] チェックボード
 	p.CheckBoard = NewDirtyCheckBoard()
 
 	return p
 }
-
-// EOF [O11o_3o_11o1o0]

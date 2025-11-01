@@ -7,13 +7,14 @@ import (
 
 	// Level 2
 	board_coordinate "github.com/muzudho/kifuwarabe-uec17/kernel/types/level2/board_coordinate"
+	game_rule_settings "github.com/muzudho/kifuwarabe-uec17/kernel/types/level2/game_rule_settings"
 	stone "github.com/muzudho/kifuwarabe-uec17/kernel/types/level2/stone"
 )
 
 // Board - 盤
 type Board struct {
 	// ゲームルール
-	gameRule GameRule
+	gameRuleSettings game_rule_settings.GameRuleSettings
 	// 盤座標
 	coordinate board_coordinate.BoardCoordinate
 
@@ -24,11 +25,11 @@ type Board struct {
 }
 
 // NewBoard - 新規作成
-func NewBoard(gameRule GameRule, boardWidht int, boardHeight int) *Board {
+func NewBoard(gameRuleSettings game_rule_settings.GameRuleSettings, boardWidht int, boardHeight int) *Board {
 	var b = new(Board)
 
 	// 設定ファイルから読込むので動的設定
-	b.gameRule = gameRule
+	b.gameRuleSettings = gameRuleSettings
 
 	// 枠の分、２つ増える
 	var memoryBoardWidth = boardWidht + 2
@@ -53,13 +54,13 @@ func NewBoard(gameRule GameRule, boardWidht int, boardHeight int) *Board {
 }
 
 // GetGameRule - ゲームルール取得
-func (b *Board) GetGameRule() *GameRule {
-	return &b.gameRule
+func (b *Board) GetGameRule() *game_rule_settings.GameRuleSettings {
+	return &b.gameRuleSettings
 }
 
 // SetGameRule - ゲームルール設定
-func (b *Board) SetGameRule(gameRule *GameRule) {
-	b.gameRule = *gameRule
+func (b *Board) SetGameRule(gameRuleSettings *game_rule_settings.GameRuleSettings) {
+	b.gameRuleSettings = *gameRuleSettings
 }
 
 // GetCoordinate - 盤座標取得
