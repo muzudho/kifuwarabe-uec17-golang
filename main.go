@@ -118,7 +118,10 @@ func main() {
 		// [O11o_1o0] コンソール等からの文字列入力
 		for virtualIo.ScannerScan() {
 			var command = virtualIo.ScannerText()
-			log1.C.Infof("# %s", command)             // 人間向けの出力
+
+			// FIXME: 大会の邪魔になるのでは？
+			//log1.C.Infof("# %s", command)             // 人間向けの出力
+
 			log1.J.Infow("input", "command", command) // コンピューター向けの出力
 
 			// [O11o_3o0]
