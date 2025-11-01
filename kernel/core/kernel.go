@@ -8,23 +8,26 @@ import (
 	"strconv"
 	"strings"
 
+	// Level 1
 	logger "github.com/muzudho/kifuwarabe-uec17/kernel/level_1_for_maintenance/logger"
 
-	// Level 1
+	// Level 2.1
 	geta "github.com/muzudho/kifuwarabe-uec17/kernel/level_2_conceptual/sublevel_1/geta"
 	moves_num "github.com/muzudho/kifuwarabe-uec17/kernel/level_2_conceptual/sublevel_1/moves_num"
 	point "github.com/muzudho/kifuwarabe-uec17/kernel/level_2_conceptual/sublevel_1/point"
 
-	// Level 2
+	// Level 2.2
 	board_coordinate "github.com/muzudho/kifuwarabe-uec17/kernel/level_2_conceptual/sublevel_2/board_coordinate"
+
+	// Level 3.1
 	stone "github.com/muzudho/kifuwarabe-uec17/kernel/level_3_physical/sublevel_1/stone"
-	game_rule_settings "github.com/muzudho/kifuwarabe-uec17/kernel/types/level2/game_rule_settings"
+
+	// Level 4.1
+	game_rule_settings "github.com/muzudho/kifuwarabe-uec17/kernel/level_4_game_rule/sublevel_1/game_rule_settings"
+
+	//
 	record_item "github.com/muzudho/kifuwarabe-uec17/kernel/types/level2/record_item"
-
-	// Level 3
 	record "github.com/muzudho/kifuwarabe-uec17/kernel/types/level3/record"
-
-	// Level 4
 	position "github.com/muzudho/kifuwarabe-uec17/kernel/types/level4/position"
 	ren_db "github.com/muzudho/kifuwarabe-uec17/kernel/types/level4/ren_db"
 )

@@ -23,7 +23,8 @@ import (
 	// Level 3.1
 	stone "github.com/muzudho/kifuwarabe-uec17/kernel/level_3_physical/sublevel_1/stone"
 
-	game_rule_settings "github.com/muzudho/kifuwarabe-uec17/kernel/types/level2/game_rule_settings"
+	// Level 4.1
+	game_rule_settings "github.com/muzudho/kifuwarabe-uec17/kernel/level_4_game_rule/sublevel_1/game_rule_settings"
 )
 
 // [O11o_1o0] グローバル変数として、バーチャルIOを１つ新規作成
