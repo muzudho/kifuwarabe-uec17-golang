@@ -1,8 +1,8 @@
 package kernel
 
 import (
+	color "github.com/muzudho/kifuwarabe-uec17/kernel/types/level1/color"
 	point "github.com/muzudho/kifuwarabe-uec17/kernel/types/level1/point"
-	types1 "github.com/muzudho/kifuwarabe-uec17/kernel/types1"
 	types2 "github.com/muzudho/kifuwarabe-uec17/kernel/types2"
 )
 
@@ -74,7 +74,7 @@ func (b *Board) SetStoneAt(i point.Point, s types2.Stone) {
 }
 
 // GetColorAt - 指定座標の石の色を取得
-func (b *Board) GetColorAt(i point.Point) types1.Color {
+func (b *Board) GetColorAt(i point.Point) color.Color {
 	return b.cells[i].GetColor()
 }
 

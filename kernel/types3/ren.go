@@ -5,8 +5,8 @@ import (
 	"math"
 	"strings"
 
+	color "github.com/muzudho/kifuwarabe-uec17/kernel/types/level1/color"
 	point "github.com/muzudho/kifuwarabe-uec17/kernel/types/level1/point"
-	types1 "github.com/muzudho/kifuwarabe-uec17/kernel/types1"
 	types2 "github.com/muzudho/kifuwarabe-uec17/kernel/types2"
 )
 
@@ -20,7 +20,7 @@ type Ren struct {
 	LibLoc string `json:"liberty"`
 
 	// 隣接する石の色
-	AdjacentColor types1.Color
+	AdjacentColor color.Color
 	// 石
 	Stone types2.Stone
 	// 要素の石の位置
@@ -39,7 +39,7 @@ type Ren struct {
 func NewRen(stone types2.Stone) *Ren {
 	var r = new(Ren)
 	r.Stone = stone
-	r.AdjacentColor = types1.Color_None
+	r.AdjacentColor = color.Color_None
 	r.MinimumLocation = math.MaxInt
 	return r
 }
@@ -60,7 +60,7 @@ func (r *Ren) GetStone() types2.Stone {
 }
 
 // GetAdjacentColor - 隣接する石の色
-func (r *Ren) GetAdjacentColor() types1.Color {
+func (r *Ren) GetAdjacentColor() color.Color {
 	return r.AdjacentColor
 }
 

@@ -3,7 +3,7 @@ package types2
 import (
 	"fmt"
 
-	types1 "github.com/muzudho/kifuwarabe-uec17/kernel/types1"
+	color "github.com/muzudho/kifuwarabe-uec17/kernel/types/level1/color"
 )
 
 // Stone - 石の色
@@ -95,16 +95,16 @@ func (s Stone) String() string {
 }
 
 // GetColor - 色の取得
-func (s Stone) GetColor() types1.Color {
+func (s Stone) GetColor() color.Color {
 	switch s {
 	case Stone_Space:
-		return types1.Color_None
+		return color.Color_None
 	case Stone_Black:
-		return types1.Color_Black
+		return color.Color_Black
 	case Stone_White:
-		return types1.Color_White
+		return color.Color_White
 	case Stone_Wall:
-		return types1.Color_None
+		return color.Color_None
 	default:
 		panic(fmt.Sprintf("%d", int(s)))
 	}
