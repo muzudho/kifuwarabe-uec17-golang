@@ -1,9 +1,11 @@
-// BOF [O12o0]
-
 package kernel
 
 import (
+	// Level 1
 	point "github.com/muzudho/kifuwarabe-uec17/kernel/types/level1/point"
+
+	// Level 2
+	board_coordinate "github.com/muzudho/kifuwarabe-uec17/kernel/types/level2/board_coordinate"
 	types2 "github.com/muzudho/kifuwarabe-uec17/kernel/types2"
 )
 
@@ -52,9 +54,9 @@ func (b *Board) Init(width int, height int) {
 }
 
 // ForeachNeumannNeighborhood - [O13o__10o0] 隣接する４方向の定義
-func (b *Board) ForeachNeumannNeighborhood(here point.Point, setAdjacent func(types2.Cell_4Directions, point.Point)) {
+func (b *Board) ForeachNeumannNeighborhood(here point.Point, setAdjacent func(board_coordinate.Cell_4Directions, point.Point)) {
 	// 東、北、西、南
-	for dir := types2.Cell_4Directions(0); dir < 4; dir++ {
+	for dir := board_coordinate.Cell_4Directions(0); dir < 4; dir++ {
 		var p = here + b.coordinate.Cell4Directions[dir] // 隣接する交点
 
 		// 範囲外チェック

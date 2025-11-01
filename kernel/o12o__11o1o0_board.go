@@ -1,8 +1,12 @@
 package kernel
 
 import (
+	// Level 1
 	color "github.com/muzudho/kifuwarabe-uec17/kernel/types/level1/color"
 	point "github.com/muzudho/kifuwarabe-uec17/kernel/types/level1/point"
+
+	// Level 2
+	board_coordinate "github.com/muzudho/kifuwarabe-uec17/kernel/types/level2/board_coordinate"
 	types2 "github.com/muzudho/kifuwarabe-uec17/kernel/types2"
 )
 
@@ -11,7 +15,7 @@ type Board struct {
 	// ゲームルール
 	gameRule GameRule
 	// 盤座標
-	coordinate types2.BoardCoordinate
+	coordinate board_coordinate.BoardCoordinate
 
 	// 交点
 	//
@@ -30,7 +34,7 @@ func NewBoard(gameRule GameRule, boardWidht int, boardHeight int) *Board {
 	var memoryBoardWidth = boardWidht + 2
 	var memoryBoardHeight = boardHeight + 2
 
-	b.coordinate = types2.BoardCoordinate{
+	b.coordinate = board_coordinate.BoardCoordinate{
 		MemoryWidth:  memoryBoardWidth,
 		MemoryHeight: memoryBoardHeight,
 		// ４方向（東、北、西、南）の番地への相対インデックス
@@ -59,7 +63,7 @@ func (b *Board) SetGameRule(gameRule *GameRule) {
 }
 
 // GetCoordinate - 盤座標取得
-func (b *Board) GetCoordinate() *types2.BoardCoordinate {
+func (b *Board) GetCoordinate() *board_coordinate.BoardCoordinate {
 	return &b.coordinate
 }
 
@@ -85,8 +89,8 @@ func (b *Board) IsSpaceAt(point point.Point) bool {
 
 // サイズ変更
 func (b *Board) resize(width int, height int) {
-	b.coordinate.MemoryWidth = width + types2.BothSidesWallThickness
-	b.coordinate.MemoryHeight = height + types2.BothSidesWallThickness
+	b.coordinate.MemoryWidth = width + board_coordinate.BothSidesWallThickness
+	b.coordinate.MemoryHeight = height + board_coordinate.BothSidesWallThickness
 	b.cells = make([]types2.Stone, b.coordinate.GetMemoryArea())
 
 	// ４方向（東、北、西、南）の番地への相対インデックス

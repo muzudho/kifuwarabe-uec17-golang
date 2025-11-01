@@ -1,5 +1,3 @@
-// BOF [O12o__11o__10o2o0]
-
 package kernel
 
 import (
@@ -8,8 +6,11 @@ import (
 	"os"
 	"strings"
 
+	// Level 1
 	point "github.com/muzudho/kifuwarabe-uec17/kernel/types/level1/point"
-	types2 "github.com/muzudho/kifuwarabe-uec17/kernel/types2"
+
+	// Level 2
+	board_coordinate "github.com/muzudho/kifuwarabe-uec17/kernel/types/level2/board_coordinate"
 	types3 "github.com/muzudho/kifuwarabe-uec17/kernel/types3"
 )
 
@@ -21,7 +22,7 @@ type RenId string
 // GetRenId - 連のIdを取得
 func GetRenId(boardMemoryWidth int, positionNthFigure int, positionNumber PositionNumberInt, minimumLocation point.Point) RenId {
 	var posNth = positionNumber + geta
-	var coord = types2.GetRenIdFromPointOnBoard(boardMemoryWidth, minimumLocation)
+	var coord = board_coordinate.GetRenIdFromPointOnBoard(boardMemoryWidth, minimumLocation)
 
 	return RenId(fmt.Sprintf("%0*d,%s", positionNthFigure, posNth, coord))
 }
@@ -141,12 +142,10 @@ func (h *RenDbDocHeader) GetBoardMemoryArea() int {
 
 // GetBoardMemoryWidth - 枠付き盤の横幅
 func (h *RenDbDocHeader) GetBoardMemoryWidth() int {
-	return h.BoardWidth + types2.BothSidesWallThickness
+	return h.BoardWidth + board_coordinate.BothSidesWallThickness
 }
 
 // GetBoardMemoryHeight - 枠付き盤の縦幅
 func (h *RenDbDocHeader) GetBoardMemoryHeight() int {
-	return h.BoardHeight + types2.BothSidesWallThickness
+	return h.BoardHeight + board_coordinate.BothSidesWallThickness
 }
-
-// EOF [O12o__11o__10o2o0]

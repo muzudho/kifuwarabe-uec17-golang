@@ -1,7 +1,11 @@
 package kernel
 
 import (
+	// Level 1
 	point "github.com/muzudho/kifuwarabe-uec17/kernel/types/level1/point"
+
+	// Level 2
+	board_coordinate "github.com/muzudho/kifuwarabe-uec17/kernel/types/level2/board_coordinate"
 	types2 "github.com/muzudho/kifuwarabe-uec17/kernel/types2"
 	types3 "github.com/muzudho/kifuwarabe-uec17/kernel/types3"
 )
@@ -87,7 +91,7 @@ func (ls *LibertySearchAlgorithm) searchStoneRenRecursive(here point.Point) {
 	ls.foundRen.AddLocation(here)
 
 	// 隣接する交点毎に
-	var eachAdjacent = func(dir types2.Cell_4Directions, p point.Point) {
+	var eachAdjacent = func(dir board_coordinate.Cell_4Directions, p point.Point) {
 
 		var stone = ls.board.GetStoneAt(p) // 石の色
 		switch stone {
@@ -128,7 +132,7 @@ func (ls *LibertySearchAlgorithm) searchSpaceRen(here point.Point) {
 	ls.checkBoard.Overwrite(here, Mark_BitStone)
 	ls.foundRen.AddLocation(here)
 
-	var eachAdjacent = func(dir types2.Cell_4Directions, p point.Point) {
+	var eachAdjacent = func(dir board_coordinate.Cell_4Directions, p point.Point) {
 		// 探索済みならスキップ
 		if ls.checkBoard.Contains(p, Mark_BitStone) {
 			return

@@ -6,7 +6,11 @@ import (
 	"math"
 	"strings"
 
+	// Level 1
 	point "github.com/muzudho/kifuwarabe-uec17/kernel/types/level1/point"
+
+	// Level 2
+	board_coordinate "github.com/muzudho/kifuwarabe-uec17/kernel/types/level2/board_coordinate"
 	types2 "github.com/muzudho/kifuwarabe-uec17/kernel/types2"
 	types3 "github.com/muzudho/kifuwarabe-uec17/kernel/types3"
 )
@@ -196,12 +200,12 @@ func (k *Kernel) GetRenToCapture(placePlay point.Point) (bool, [4]*types3.Ren) {
 	var rensToRemove [4]*types3.Ren
 	var renIds = [4]point.Point{math.MaxInt, math.MaxInt, math.MaxInt, math.MaxInt}
 
-	var setAdjacentPoint = func(dir types2.Cell_4Directions, adjacentP point.Point) {
+	var setAdjacentPoint = func(dir board_coordinate.Cell_4Directions, adjacentP point.Point) {
 		var adjacentR, isFound = k.GetLiberty(adjacentP)
 		if isFound {
 			// 同じ連を数え上げるのを防止する
 			var renId = adjacentR.GetMinimumLocation()
-			for i := types2.Cell_4Directions(0); i < dir; i++ {
+			for i := board_coordinate.Cell_4Directions(0); i < dir; i++ {
 				if renIds[i] == renId { // Idが既存
 					return
 				}

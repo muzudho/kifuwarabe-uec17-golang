@@ -8,7 +8,11 @@ import (
 	"strconv"
 	"strings"
 
+	// Level 1
 	point "github.com/muzudho/kifuwarabe-uec17/kernel/types/level1/point"
+
+	// Level 2
+	board_coordinate "github.com/muzudho/kifuwarabe-uec17/kernel/types/level2/board_coordinate"
 	types2 "github.com/muzudho/kifuwarabe-uec17/kernel/types2"
 )
 
@@ -281,7 +285,7 @@ func (k *Kernel) Execute(command string, logg *Logger) bool {
 
 	case "test_file": // [O12o__10o2o0]
 		// Example: "test_file A"
-		var file = types2.GetFileFromCode(tokens[1])
+		var file = board_coordinate.GetFileFromCode(tokens[1])
 		logg.C.Infof("= %s\n", file)
 		logg.J.Infow("output", "file", file)
 		return true
@@ -331,7 +335,7 @@ func (k *Kernel) Execute(command string, logg *Logger) bool {
 
 	case "test_rank": // [O12o__10o2o0]
 		// Example: "test_rank 13"
-		var rank = types2.GetRankFromCode(tokens[1])
+		var rank = board_coordinate.GetRankFromCode(tokens[1])
 		logg.C.Infof("= %s\n", rank)
 		logg.J.Infow("output", "rank", rank)
 		return true
@@ -344,7 +348,7 @@ func (k *Kernel) Execute(command string, logg *Logger) bool {
 			logg.J.Infow("error", "x", tokens[1])
 			return true
 		}
-		var file = types2.GetFileFromX(x)
+		var file = board_coordinate.GetFileFromX(x)
 		logg.C.Infof("= %s\n", file)
 		logg.J.Infow("output", "file", file)
 		return true
@@ -357,7 +361,7 @@ func (k *Kernel) Execute(command string, logg *Logger) bool {
 			logg.J.Infow("error", "y", tokens[1])
 			return true
 		}
-		var rank = types2.GetRankFromY(y)
+		var rank = board_coordinate.GetRankFromY(y)
 		logg.C.Infof("= %s\n", rank)
 		logg.J.Infow("output", "rank", rank)
 		return true
