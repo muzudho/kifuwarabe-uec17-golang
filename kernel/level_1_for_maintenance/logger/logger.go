@@ -31,8 +31,8 @@ func createSugaredLoggerForConsole(plainTextLogFile *os.File) *zap.SugaredLogger
 		// LevelKey:    "level",
 		// EncodeLevel: zapcore.CapitalLevelEncoder,
 
-		TimeKey:    "time",
-		EncodeTime: encodeTimeSimpleInJapan, // 簡略化したタイムスタンプ
+		TimeKey: "time",
+		//EncodeTime: encodeTimeSimpleInJapan, // FIXME: これを書くと［簡略化したタイムスタンプ］が出力される。大会には邪魔
 
 		// CallerKey:    "caller",
 		// EncodeCaller: zapcore.ShortCallerEncoder,
