@@ -5,15 +5,15 @@ import (
 	"strconv"
 
 	// Level 2.1
-	geta "github.com/muzudho/kifuwarabe-uec17/kernel/level_2_conceptual/sublevel_1/geta"
-	moves_num "github.com/muzudho/kifuwarabe-uec17/kernel/level_2_conceptual/sublevel_1/moves_num"
-	point "github.com/muzudho/kifuwarabe-uec17/kernel/level_2_conceptual/sublevel_1/point"
+	geta "github.com/muzudho/kifuwarabe-uec17-golang/kernel/level_2_conceptual/sublevel_1/geta"
+	moves_num "github.com/muzudho/kifuwarabe-uec17-golang/kernel/level_2_conceptual/sublevel_1/moves_num"
+	point "github.com/muzudho/kifuwarabe-uec17-golang/kernel/level_2_conceptual/sublevel_1/point"
 
 	// Level 3.1
-	stone "github.com/muzudho/kifuwarabe-uec17/kernel/level_3_physical/sublevel_1/stone"
+	stone "github.com/muzudho/kifuwarabe-uec17-golang/kernel/level_3_physical/sublevel_1/stone"
 
 	// Level 6.1
-	record_item "github.com/muzudho/kifuwarabe-uec17/kernel/level_6_database/sublevel_1/record_item"
+	record_item "github.com/muzudho/kifuwarabe-uec17-golang/kernel/level_6_database/sublevel_1/record_item"
 )
 
 // Record - 棋譜

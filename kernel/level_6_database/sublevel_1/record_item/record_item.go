@@ -1,7 +1,7 @@
 package kernel
 
 // Level 1
-import point "github.com/muzudho/kifuwarabe-uec17/kernel/level_2_conceptual/sublevel_1/point"
+import point "github.com/muzudho/kifuwarabe-uec17-golang/kernel/level_2_conceptual/sublevel_1/point"
 
 // RecordItem - 棋譜の一手分
 type RecordItem struct {

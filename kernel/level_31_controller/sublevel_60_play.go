@@ -7,19 +7,19 @@ import (
 	"strings"
 
 	// Level 1
-	logger "github.com/muzudho/kifuwarabe-uec17/kernel/level_1_for_maintenance/logger"
+	logger "github.com/muzudho/kifuwarabe-uec17-golang/kernel/level_1_for_maintenance/logger"
 
 	// Level 2.1
-	point "github.com/muzudho/kifuwarabe-uec17/kernel/level_2_conceptual/sublevel_1/point"
+	point "github.com/muzudho/kifuwarabe-uec17-golang/kernel/level_2_conceptual/sublevel_1/point"
 
 	// Level 2.2
-	board_coordinate "github.com/muzudho/kifuwarabe-uec17/kernel/level_2_conceptual/sublevel_2/board_coordinate"
+	board_coordinate "github.com/muzudho/kifuwarabe-uec17-golang/kernel/level_2_conceptual/sublevel_2/board_coordinate"
 
 	// Level 3.1
-	stone "github.com/muzudho/kifuwarabe-uec17/kernel/level_3_physical/sublevel_1/stone"
+	stone "github.com/muzudho/kifuwarabe-uec17-golang/kernel/level_3_physical/sublevel_1/stone"
 
 	// Level 4.1
-	rentype "github.com/muzudho/kifuwarabe-uec17/kernel/level_4_game_rule/sublevel_1/ren"
+	rentype "github.com/muzudho/kifuwarabe-uec17-golang/kernel/level_4_game_rule/sublevel_1/ren"
 )
 
 // DoPlay - 打つ

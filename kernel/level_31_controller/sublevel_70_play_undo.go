@@ -2,7 +2,7 @@
 
 package level_31_controller
 
-import logger "github.com/muzudho/kifuwarabe-uec17/kernel/level_1_for_maintenance/logger"
+import logger "github.com/muzudho/kifuwarabe-uec17-golang/kernel/level_1_for_maintenance/logger"
 
 // DoUndoPlay - 石を打ったのを戻す
 //

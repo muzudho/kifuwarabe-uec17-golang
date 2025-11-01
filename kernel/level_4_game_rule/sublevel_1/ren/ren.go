@@ -6,11 +6,11 @@ import (
 	"strings"
 
 	// Level 2.1
-	color "github.com/muzudho/kifuwarabe-uec17/kernel/level_2_conceptual/sublevel_1/color"
-	point "github.com/muzudho/kifuwarabe-uec17/kernel/level_2_conceptual/sublevel_1/point"
+	color "github.com/muzudho/kifuwarabe-uec17-golang/kernel/level_2_conceptual/sublevel_1/color"
+	point "github.com/muzudho/kifuwarabe-uec17-golang/kernel/level_2_conceptual/sublevel_1/point"
 
 	// Level 2
-	stone "github.com/muzudho/kifuwarabe-uec17/kernel/level_3_physical/sublevel_1/stone"
+	stone "github.com/muzudho/kifuwarabe-uec17-golang/kernel/level_3_physical/sublevel_1/stone"
 )
 
 // Ren - 連，れん

@@ -2,13 +2,13 @@ package check_board
 
 import (
 	// Level 2.1
-	point "github.com/muzudho/kifuwarabe-uec17/kernel/level_2_conceptual/sublevel_1/point"
+	point "github.com/muzudho/kifuwarabe-uec17-golang/kernel/level_2_conceptual/sublevel_1/point"
 
 	// Level 2.2
-	board_coordinate "github.com/muzudho/kifuwarabe-uec17/kernel/level_2_conceptual/sublevel_2/board_coordinate"
+	board_coordinate "github.com/muzudho/kifuwarabe-uec17-golang/kernel/level_2_conceptual/sublevel_2/board_coordinate"
 
 	// Level 4.1
-	mark "github.com/muzudho/kifuwarabe-uec17/kernel/level_5_game_technic/sublevel_1/mark"
+	mark "github.com/muzudho/kifuwarabe-uec17-golang/kernel/level_5_game_technic/sublevel_1/mark"
 )
 
 // CheckBoard - チェック盤

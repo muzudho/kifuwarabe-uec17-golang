@@ -4,7 +4,7 @@ rem 文字化け対策。コマンドプロンプトがデフォルトで Shift-
 chcp 65001 >nul
 
 echo コピー中だぜ（＾～＾）...
-copy "C:\Users\muzud\go\src\github.com\muzudho\kifuwarabe-uec17\kifuwarabe-uec17.exe" "C:\Users\muzud\OneDrive\ドキュメント\Tools\kifuwarabe-uec17\kifuwarabe-uec17.exe"
+copy "C:\Users\muzud\go\src\github.com\muzudho\kifuwarabe-uec17-golang\kifuwarabe-uec17-golang.exe" "C:\Users\muzud\OneDrive\ドキュメント\Tools\kifuwarabe-uec17-golang\kifuwarabe-uec17-golang.exe"
 if %errorlevel%==0 (
     echo コピー完了！ よしよし（＾▽＾）
 ) else (

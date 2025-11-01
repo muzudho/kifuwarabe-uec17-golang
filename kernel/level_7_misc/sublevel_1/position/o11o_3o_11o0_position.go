@@ -2,11 +2,11 @@ package position
 
 import (
 	// Level 4.1
-	check_board "github.com/muzudho/kifuwarabe-uec17/kernel/level_4_game_rule/sublevel_1/check_board"
-	game_rule_settings "github.com/muzudho/kifuwarabe-uec17/kernel/level_4_game_rule/sublevel_1/game_rule_settings"
+	check_board "github.com/muzudho/kifuwarabe-uec17-golang/kernel/level_4_game_rule/sublevel_1/check_board"
+	game_rule_settings "github.com/muzudho/kifuwarabe-uec17-golang/kernel/level_4_game_rule/sublevel_1/game_rule_settings"
 
 	// Level 4.2
-	board "github.com/muzudho/kifuwarabe-uec17/kernel/level_4_game_rule/sublevel_2/board"
+	board "github.com/muzudho/kifuwarabe-uec17-golang/kernel/level_4_game_rule/sublevel_2/board"
 )
 
 type Position struct {

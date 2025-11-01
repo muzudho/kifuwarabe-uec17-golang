@@ -9,33 +9,33 @@ import (
 	"strings"
 
 	// Level 1
-	logger "github.com/muzudho/kifuwarabe-uec17/kernel/level_1_for_maintenance/logger"
+	logger "github.com/muzudho/kifuwarabe-uec17-golang/kernel/level_1_for_maintenance/logger"
 
 	// Level 2.1
-	geta "github.com/muzudho/kifuwarabe-uec17/kernel/level_2_conceptual/sublevel_1/geta"
-	moves_num "github.com/muzudho/kifuwarabe-uec17/kernel/level_2_conceptual/sublevel_1/moves_num"
-	point "github.com/muzudho/kifuwarabe-uec17/kernel/level_2_conceptual/sublevel_1/point"
+	geta "github.com/muzudho/kifuwarabe-uec17-golang/kernel/level_2_conceptual/sublevel_1/geta"
+	moves_num "github.com/muzudho/kifuwarabe-uec17-golang/kernel/level_2_conceptual/sublevel_1/moves_num"
+	point "github.com/muzudho/kifuwarabe-uec17-golang/kernel/level_2_conceptual/sublevel_1/point"
 
 	// Level 2.2
-	board_coordinate "github.com/muzudho/kifuwarabe-uec17/kernel/level_2_conceptual/sublevel_2/board_coordinate"
+	board_coordinate "github.com/muzudho/kifuwarabe-uec17-golang/kernel/level_2_conceptual/sublevel_2/board_coordinate"
 
 	// Level 3.1
-	stone "github.com/muzudho/kifuwarabe-uec17/kernel/level_3_physical/sublevel_1/stone"
+	stone "github.com/muzudho/kifuwarabe-uec17-golang/kernel/level_3_physical/sublevel_1/stone"
 
 	// Level 4.1
-	game_rule_settings "github.com/muzudho/kifuwarabe-uec17/kernel/level_4_game_rule/sublevel_1/game_rule_settings"
+	game_rule_settings "github.com/muzudho/kifuwarabe-uec17-golang/kernel/level_4_game_rule/sublevel_1/game_rule_settings"
 
 	// Level 6.1
-	record_item "github.com/muzudho/kifuwarabe-uec17/kernel/level_6_database/sublevel_1/record_item"
+	record_item "github.com/muzudho/kifuwarabe-uec17-golang/kernel/level_6_database/sublevel_1/record_item"
 
 	// Level 6.2
-	record "github.com/muzudho/kifuwarabe-uec17/kernel/level_6_database/sublevel_2/record"
+	record "github.com/muzudho/kifuwarabe-uec17-golang/kernel/level_6_database/sublevel_2/record"
 
 	// Level 6.3
-	ren_db "github.com/muzudho/kifuwarabe-uec17/kernel/level_6_database/sublevel_3/ren_db"
+	ren_db "github.com/muzudho/kifuwarabe-uec17-golang/kernel/level_6_database/sublevel_3/ren_db"
 
 	// Level 7.1
-	position "github.com/muzudho/kifuwarabe-uec17/kernel/level_7_misc/sublevel_1/position"
+	position "github.com/muzudho/kifuwarabe-uec17-golang/kernel/level_7_misc/sublevel_1/position"
 )
 
 // Kernel - カーネル

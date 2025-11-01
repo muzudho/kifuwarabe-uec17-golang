@@ -2,8 +2,8 @@ package kernel
 
 import (
 	// Level 2.1
-	komi_float "github.com/muzudho/kifuwarabe-uec17/kernel/level_2_conceptual/sublevel_1/komi_float"
-	moves_num "github.com/muzudho/kifuwarabe-uec17/kernel/level_2_conceptual/sublevel_1/moves_num"
+	komi_float "github.com/muzudho/kifuwarabe-uec17-golang/kernel/level_2_conceptual/sublevel_1/komi_float"
+	moves_num "github.com/muzudho/kifuwarabe-uec17-golang/kernel/level_2_conceptual/sublevel_1/moves_num"
 )
 
 // GameRuleSettings - 対局ルール設定

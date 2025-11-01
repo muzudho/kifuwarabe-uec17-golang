@@ -1,4 +1,4 @@
-module github.com/muzudho/kifuwarabe-uec17
+module github.com/muzudho/kifuwarabe-uec17-golang
 
 go 1.19
 

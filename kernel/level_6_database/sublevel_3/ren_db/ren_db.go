@@ -7,21 +7,21 @@ import (
 	"strings"
 
 	// Level 2.1
-	geta "github.com/muzudho/kifuwarabe-uec17/kernel/level_2_conceptual/sublevel_1/geta"
-	moves_num "github.com/muzudho/kifuwarabe-uec17/kernel/level_2_conceptual/sublevel_1/moves_num"
-	point "github.com/muzudho/kifuwarabe-uec17/kernel/level_2_conceptual/sublevel_1/point"
+	geta "github.com/muzudho/kifuwarabe-uec17-golang/kernel/level_2_conceptual/sublevel_1/geta"
+	moves_num "github.com/muzudho/kifuwarabe-uec17-golang/kernel/level_2_conceptual/sublevel_1/moves_num"
+	point "github.com/muzudho/kifuwarabe-uec17-golang/kernel/level_2_conceptual/sublevel_1/point"
 
 	// Level 2.2
-	board_coordinate "github.com/muzudho/kifuwarabe-uec17/kernel/level_2_conceptual/sublevel_2/board_coordinate"
+	board_coordinate "github.com/muzudho/kifuwarabe-uec17-golang/kernel/level_2_conceptual/sublevel_2/board_coordinate"
 
 	// Level 4.1
-	rentype "github.com/muzudho/kifuwarabe-uec17/kernel/level_4_game_rule/sublevel_1/ren"
+	rentype "github.com/muzudho/kifuwarabe-uec17-golang/kernel/level_4_game_rule/sublevel_1/ren"
 
 	// Level 5.1
-	ren_id "github.com/muzudho/kifuwarabe-uec17/kernel/level_5_game_technic/sublevel_1/ren_id"
+	ren_id "github.com/muzudho/kifuwarabe-uec17-golang/kernel/level_5_game_technic/sublevel_1/ren_id"
 
 	// Level 6.1
-	ren_db_doc_header "github.com/muzudho/kifuwarabe-uec17/kernel/level_6_database/sublevel_1/ren_db_doc_header"
+	ren_db_doc_header "github.com/muzudho/kifuwarabe-uec17-golang/kernel/level_6_database/sublevel_1/ren_db_doc_header"
 )
 
 // RenDb - 連データベース
