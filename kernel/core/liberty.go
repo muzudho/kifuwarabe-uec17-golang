@@ -2,7 +2,7 @@ package core
 
 import (
 	// Level 1
-	point "github.com/muzudho/kifuwarabe-uec17/kernel/types/level1/point"
+	point "github.com/muzudho/kifuwarabe-uec17/kernel/level_2_conceptual/sublevel_1/point"
 
 	// Level 3
 	rentype "github.com/muzudho/kifuwarabe-uec17/kernel/types/level3/ren"

@@ -2,8 +2,8 @@ package board
 
 import (
 	// Level 2.1
-	color "github.com/muzudho/kifuwarabe-uec17/kernel/level_2_conceptual/sub_level_1/color"
-	point "github.com/muzudho/kifuwarabe-uec17/kernel/types/level1/point"
+	color "github.com/muzudho/kifuwarabe-uec17/kernel/level_2_conceptual/sublevel_1/color"
+	point "github.com/muzudho/kifuwarabe-uec17/kernel/level_2_conceptual/sublevel_1/point"
 
 	// Level 2
 	board_coordinate "github.com/muzudho/kifuwarabe-uec17/kernel/types/level2/board_coordinate"

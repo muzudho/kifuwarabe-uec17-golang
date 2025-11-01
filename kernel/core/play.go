@@ -9,7 +9,7 @@ import (
 	logger "github.com/muzudho/kifuwarabe-uec17/kernel/level_1_for_maintenance/logger"
 
 	// Level 1
-	point "github.com/muzudho/kifuwarabe-uec17/kernel/types/level1/point"
+	point "github.com/muzudho/kifuwarabe-uec17/kernel/level_2_conceptual/sublevel_1/point"
 
 	// Level 2
 	board_coordinate "github.com/muzudho/kifuwarabe-uec17/kernel/types/level2/board_coordinate"
