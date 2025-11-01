@@ -1,6 +1,6 @@
 // BOF [O12o__11o__10o5o__10o0]
 
-package kernel
+package core
 
 import (
 	"encoding/json"

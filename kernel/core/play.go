@@ -1,6 +1,6 @@
 // BOF [O19o0]
 
-package kernel
+package core
 
 import (
 	"math"

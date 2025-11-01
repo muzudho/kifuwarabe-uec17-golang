@@ -1,6 +1,6 @@
 // BOF [O23o1o0]
 
-package kernel
+package core
 
 import logger "github.com/muzudho/kifuwarabe-uec17/kernel/logger"
 
