@@ -8,6 +8,7 @@ import (
 
 	types1 "github.com/muzudho/kifuwarabe-uec17/kernel/types1"
 	types2 "github.com/muzudho/kifuwarabe-uec17/kernel/types2"
+	types3 "github.com/muzudho/kifuwarabe-uec17/kernel/types3"
 )
 
 // DoPlay - 打つ
@@ -113,13 +114,13 @@ func (k *Kernel) Play(stoneA types2.Stone, placePlay types1.Point, logg *Logger,
 
 	// [O22o6o1o0] Captured ルール
 	var isExists4rensToRemove = false
-	var o4rensToRemove [4]*Ren
+	var o4rensToRemove [4]*types3.Ren
 	var isChecked4rensToRemove = false
 
 	// [O22o3o1o0] 連と呼吸点の算出
 	var renC, isFound = k.GetLiberty(placePlay)
 	if isFound && renC.GetArea() == 1 { // 石Aを置いた交点を含む連Cについて、連Cの面積が1である（眼）
-		if stoneA.GetColor() == renC.adjacentColor.GetOpponent() {
+		if stoneA.GetColor() == renC.AdjacentColor.GetOpponent() {
 			// かつ、連Cに隣接する連の色が、石Aのちょうど反対側の色であったなら、
 			// 相手の眼に石を置こうとしたとみなす
 
@@ -134,7 +135,7 @@ func (k *Kernel) Play(stoneA types2.Stone, placePlay types1.Point, logg *Logger,
 				return onOpponentEye()
 			}
 
-		} else if k.Position.CanNotPutOnMyEye && stoneA.GetColor() == renC.adjacentColor {
+		} else if k.Position.CanNotPutOnMyEye && stoneA.GetColor() == renC.AdjacentColor {
 			// [O22o4o1o0]
 			// かつ、連Cに隣接する連の色が、石Aの色であったなら、
 			// 自分の眼に石を置こうとしたとみなす
@@ -189,10 +190,10 @@ func (k *Kernel) Play(stoneA types2.Stone, placePlay types1.Point, logg *Logger,
 // isExists : bool
 // renToRemove : [4]*Ren
 // 隣接する東、北、西、南にある石を含む連
-func (k *Kernel) GetRenToCapture(placePlay types1.Point) (bool, [4]*Ren) {
+func (k *Kernel) GetRenToCapture(placePlay types1.Point) (bool, [4]*types3.Ren) {
 	// [O22o6o1o0]
 	var isExists bool
-	var rensToRemove [4]*Ren
+	var rensToRemove [4]*types3.Ren
 	var renIds = [4]types1.Point{math.MaxInt, math.MaxInt, math.MaxInt, math.MaxInt}
 
 	var setAdjacentPoint = func(dir Cell_4Directions, adjacentP types1.Point) {

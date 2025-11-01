@@ -1,4 +1,4 @@
-package kernel
+package types3
 
 import (
 	"fmt"
@@ -19,15 +19,15 @@ type Ren struct {
 	LibLoc string `json:"liberty"`
 
 	// 隣接する石の色
-	adjacentColor types1.Color
+	AdjacentColor types1.Color
 	// 石
-	stone types2.Stone
+	Stone types2.Stone
 	// 要素の石の位置
-	locations []types1.Point
+	Locations []types1.Point
 	// 呼吸点の位置
-	libertyLocations []types1.Point
+	LibertyLocations []types1.Point
 	// 最小の場所。Idとして利用することを想定
-	minimumLocation types1.Point
+	MinimumLocation types1.Point
 }
 
 // NewRen - 連を新規作成
@@ -37,48 +37,48 @@ type Ren struct {
 // color - 色
 func NewRen(stone types2.Stone) *Ren {
 	var r = new(Ren)
-	r.stone = stone
-	r.adjacentColor = types1.Color_None
-	r.minimumLocation = math.MaxInt
+	r.Stone = stone
+	r.AdjacentColor = types1.Color_None
+	r.MinimumLocation = math.MaxInt
 	return r
 }
 
 // GetArea - 面積。アゲハマの数
 func (r *Ren) GetArea() int {
-	return len(r.locations)
+	return len(r.Locations)
 }
 
 // GetLibertyArea - 呼吸点の面積
 func (r *Ren) GetLibertyArea() int {
-	return len(r.libertyLocations)
+	return len(r.LibertyLocations)
 }
 
 // GetStone - 石
 func (r *Ren) GetStone() types2.Stone {
-	return r.stone
+	return r.Stone
 }
 
 // GetAdjacentColor - 隣接する石の色
 func (r *Ren) GetAdjacentColor() types1.Color {
-	return r.adjacentColor
+	return r.AdjacentColor
 }
 
 // GetMinimumLocation - 最小の場所。Idとして利用することを想定
 func (r *Ren) GetMinimumLocation() types1.Point {
-	return r.minimumLocation
+	return r.MinimumLocation
 }
 
 // AddLocation - 場所の追加
 func (r *Ren) AddLocation(location types1.Point) {
-	r.locations = append(r.locations, location)
+	r.Locations = append(r.Locations, location)
 
 	// 最小の数を更新
-	r.minimumLocation = types1.Point(math.Min(float64(r.minimumLocation), float64(location)))
+	r.MinimumLocation = types1.Point(math.Min(float64(r.MinimumLocation), float64(location)))
 }
 
 // ForeachLocation - 場所毎に
 func (r *Ren) ForeachLocation(setLocation func(int, types1.Point)) {
-	for i, point := range r.locations {
+	for i, point := range r.Locations {
 		setLocation(i, point)
 	}
 }
@@ -90,7 +90,7 @@ func (r *Ren) Dump() string {
 	var convertLocation = func(location types1.Point) string {
 		return fmt.Sprintf("%d", location)
 	}
-	var tokens = r.createCoordBelt(r.locations, convertLocation)
+	var tokens = r.createCoordBelt(r.Locations, convertLocation)
 	return strings.Join(tokens, " ")
 }
 
@@ -113,18 +113,18 @@ func (r *Ren) RefreshToExternalFile(convertLocation func(types1.Point) string) {
 	{
 		// stone to Sto
 		// Examples: `.`, `x`, `o`, `+`
-		r.Sto = r.stone.String()
+		r.Sto = r.Stone.String()
 	}
 	{
 		// lorations to Loc
 		// Example: `A1 B2 C3 D4`
-		var tokens = r.createCoordBelt(r.locations, convertLocation)
+		var tokens = r.createCoordBelt(r.Locations, convertLocation)
 		// sort.Strings(tokens) // 辞書順ソート - 走査方向が変わってしまうので止めた
 		r.Loc = strings.Join(tokens, " ")
 	}
 	{
 		// libertyLocations to LibLoc
-		var tokens = r.createCoordBelt(r.libertyLocations, convertLocation)
+		var tokens = r.createCoordBelt(r.LibertyLocations, convertLocation)
 		r.LibLoc = strings.Join(tokens, " ")
 	}
 }

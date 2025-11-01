@@ -9,6 +9,7 @@ import (
 	"strings"
 
 	types1 "github.com/muzudho/kifuwarabe-uec17/kernel/types1"
+	types3 "github.com/muzudho/kifuwarabe-uec17/kernel/types3"
 )
 
 // RenId - 連データベースに格納される連のId
@@ -30,14 +31,14 @@ type RenDb struct {
 	Header RenDbDocHeader `json:"header"`
 
 	// 要素
-	Rens map[RenId]*Ren `json:"rens"`
+	Rens map[RenId]*types3.Ren `json:"rens"`
 }
 
 // NewRenDb - 連データベースを新規作成
 func NewRenDb(boardWidth int, boardHeight int) *RenDb {
 	var db = new(RenDb)
 	db.Header.Init(boardWidth, boardHeight)
-	db.Rens = make(map[RenId]*Ren)
+	db.Rens = make(map[RenId]*types3.Ren)
 	return db
 }
 
@@ -74,7 +75,7 @@ func (db *RenDb) Save(path string, convertLocation func(types1.Point) string, on
 }
 
 // FindRen - 連を取得
-func (db *RenDb) GetRen(renId RenId) (*Ren, bool) {
+func (db *RenDb) GetRen(renId RenId) (*types3.Ren, bool) {
 	var ren, isOk = db.Rens[renId]
 
 	if isOk {
@@ -86,8 +87,8 @@ func (db *RenDb) GetRen(renId RenId) (*Ren, bool) {
 
 // RegisterRen - 連を登録
 // * すでに Id が登録されているなら、上書きしない
-func (db *RenDb) RegisterRen(positionNthFigure int, positionNumber PositionNumberInt, ren *Ren) {
-	var renId = GetRenId(db.Header.GetBoardMemoryWidth(), positionNthFigure, positionNumber, ren.minimumLocation)
+func (db *RenDb) RegisterRen(positionNthFigure int, positionNumber PositionNumberInt, ren *types3.Ren) {
+	var renId = GetRenId(db.Header.GetBoardMemoryWidth(), positionNthFigure, positionNumber, ren.MinimumLocation)
 
 	var _, isExists = db.Rens[renId]
 	if !isExists {

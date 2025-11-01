@@ -10,6 +10,7 @@ import (
 
 	types1 "github.com/muzudho/kifuwarabe-uec17/kernel/types1"
 	types2 "github.com/muzudho/kifuwarabe-uec17/kernel/types2"
+	types3 "github.com/muzudho/kifuwarabe-uec17/kernel/types3"
 )
 
 // LoadRenDb - [O12o__11o__10o5o__10o_10o0] 連データベースの外部ファイル読取
@@ -40,7 +41,7 @@ func (k *Kernel) LoadRenDb(path string, onError func(error) bool) bool {
 }
 
 // RefreshRenToInternal - TODO 外部ファイルから入力された内容を内部状態に適用します
-func (k *Kernel) RefreshRenToInternal(r *Ren) bool {
+func (k *Kernel) RefreshRenToInternal(r *types3.Ren) bool {
 	{
 		var getDefaultStone = func() (bool, types2.Stone) {
 			panic(fmt.Sprintf("unexpected stone:%s", r.Sto))
@@ -52,7 +53,7 @@ func (k *Kernel) RefreshRenToInternal(r *Ren) bool {
 		if !isOk {
 			return false
 		}
-		r.stone = stone
+		r.Stone = stone
 	}
 	{
 		// TODO locations from r.Loc
@@ -66,7 +67,7 @@ func (k *Kernel) RefreshRenToInternal(r *Ren) bool {
 				numbers = append(numbers, location)
 			}
 
-			r.locations = numbers
+			r.Locations = numbers
 		}
 	}
 	{
@@ -81,7 +82,7 @@ func (k *Kernel) RefreshRenToInternal(r *Ren) bool {
 				numbers = append(numbers, location)
 			}
 
-			r.libertyLocations = numbers
+			r.LibertyLocations = numbers
 		}
 	}
 
@@ -89,7 +90,7 @@ func (k *Kernel) RefreshRenToInternal(r *Ren) bool {
 }
 
 // RemoveRen - 石の連を打ち上げます
-func (k *Kernel) RemoveRen(ren *Ren) {
+func (k *Kernel) RemoveRen(ren *types3.Ren) {
 	// 空点をセット
 	var setLocation = func(i int, location types1.Point) {
 		k.Position.Board.SetStoneAt(location, types2.Stone_Space)

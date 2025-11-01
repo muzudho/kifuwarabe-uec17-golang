@@ -3,6 +3,7 @@ package kernel
 import (
 	types1 "github.com/muzudho/kifuwarabe-uec17/kernel/types1"
 	types2 "github.com/muzudho/kifuwarabe-uec17/kernel/types2"
+	types3 "github.com/muzudho/kifuwarabe-uec17/kernel/types3"
 )
 
 // GetLiberty - 呼吸点の数え上げ。連の数え上げ。
@@ -16,7 +17,7 @@ import (
 // -------
 // - *Ren is ren or nil
 // - bool is found
-func (k *Kernel) GetLiberty(arbitraryPoint types1.Point) (*Ren, bool) {
+func (k *Kernel) GetLiberty(arbitraryPoint types1.Point) (*types3.Ren, bool) {
 	// チェックボードの初期化
 	k.Position.CheckBoard.Init(k.Position.Board.coordinate)
 
@@ -32,7 +33,7 @@ type LibertySearchAlgorithm struct {
 	// チェック盤
 	checkBoard *CheckBoard
 	// foundRen - 呼吸点の探索時に使います
-	foundRen *Ren
+	foundRen *types3.Ren
 }
 
 // NewLibertySearchAlgorithm - 新規作成
@@ -51,16 +52,16 @@ func NewLibertySearchAlgorithm(board *Board, checkBoard *CheckBoard) *LibertySea
 // -------
 // - *Ren is ren or nil
 // - bool is found
-func (ls *LibertySearchAlgorithm) findRen(arbitraryPoint types1.Point) (*Ren, bool) {
+func (ls *LibertySearchAlgorithm) findRen(arbitraryPoint types1.Point) (*types3.Ren, bool) {
 	// 探索済みならスキップ
 	if ls.checkBoard.Contains(arbitraryPoint, Mark_BitStone) {
 		return nil, false
 	}
 
 	// 連の初期化
-	ls.foundRen = NewRen(ls.board.GetStoneAt(arbitraryPoint))
+	ls.foundRen = types3.NewRen(ls.board.GetStoneAt(arbitraryPoint))
 
-	if ls.foundRen.stone == types2.Stone_Space {
+	if ls.foundRen.Stone == types2.Stone_Space {
 		ls.searchSpaceRen(arbitraryPoint)
 	} else {
 		ls.searchStoneRenRecursive(arbitraryPoint)
@@ -94,7 +95,7 @@ func (ls *LibertySearchAlgorithm) searchStoneRenRecursive(here types1.Point) {
 		case types2.Stone_Space: // 空点
 			if !ls.checkBoard.Contains(p, Mark_BitLiberty) { // まだチェックしていない呼吸点なら
 				ls.checkBoard.Overwrite(p, Mark_BitLiberty)
-				ls.foundRen.libertyLocations = append(ls.foundRen.libertyLocations, p) // 呼吸点を追加
+				ls.foundRen.LibertyLocations = append(ls.foundRen.LibertyLocations, p) // 呼吸点を追加
 			}
 
 			return // あとの処理をスキップ
@@ -110,9 +111,9 @@ func (ls *LibertySearchAlgorithm) searchStoneRenRecursive(here types1.Point) {
 
 		var color = stone.GetColor()
 		// 隣接する色、追加
-		ls.foundRen.adjacentColor = ls.foundRen.adjacentColor.GetAdded(color)
+		ls.foundRen.AdjacentColor = ls.foundRen.AdjacentColor.GetAdded(color)
 
-		if stone == ls.foundRen.stone { // 同じ石
+		if stone == ls.foundRen.Stone { // 同じ石
 			ls.searchStoneRenRecursive(p) // 再帰
 		}
 	}
@@ -140,7 +141,7 @@ func (ls *LibertySearchAlgorithm) searchSpaceRen(here types1.Point) {
 
 		var color = stone.GetColor()
 		// 隣接する色、追加
-		ls.foundRen.adjacentColor = ls.foundRen.adjacentColor.GetAdded(color)
+		ls.foundRen.AdjacentColor = ls.foundRen.AdjacentColor.GetAdded(color)
 		ls.searchSpaceRen(p) // 再帰
 	}
 
