@@ -12,6 +12,7 @@ import (
 	point "github.com/muzudho/kifuwarabe-uec17/kernel/types/level1/point"
 
 	// Level 2
+	record_item "github.com/muzudho/kifuwarabe-uec17/kernel/types/level2/record_item"
 	stone "github.com/muzudho/kifuwarabe-uec17/kernel/types/level2/stone"
 
 	board_coordinate "github.com/muzudho/kifuwarabe-uec17/kernel/types/level2/board_coordinate"
@@ -188,17 +189,17 @@ func (k *Kernel) Execute(command string, logg *Logger) bool {
 		// Example: "record"
 		var sb strings.Builder
 
-		var setPoint = func(positionNumber PositionNumberInt, item *RecordItem) {
+		var setPoint = func(positionNumber PositionNumberInt, item *record_item.RecordItem) {
 			var positionNth = positionNumber + geta // 基数を序数に変換
-			var coord = k.Position.Board.coordinate.GetGtpMoveFromPoint(item.placePlay)
+			var coord = k.Position.Board.coordinate.GetGtpMoveFromPoint(item.PlacePlay)
 			// sb.WriteString(fmt.Sprintf("[%d]%s ", positionNth, coord))
 
 			// [O22o7o4o0] コウを追加
 			var koStr string
-			if item.ko == point.Point(0) {
+			if item.Ko == point.Point(0) {
 				koStr = ""
 			} else {
-				koStr = fmt.Sprintf("(%s)", k.Position.Board.coordinate.GetGtpMoveFromPoint(item.ko))
+				koStr = fmt.Sprintf("(%s)", k.Position.Board.coordinate.GetGtpMoveFromPoint(item.Ko))
 			}
 			sb.WriteString(fmt.Sprintf("[%d]%s%s ", positionNth, coord, koStr))
 		}

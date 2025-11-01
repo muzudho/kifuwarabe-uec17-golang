@@ -10,6 +10,7 @@ import (
 	point "github.com/muzudho/kifuwarabe-uec17/kernel/types/level1/point"
 
 	// Level 2
+	record_item "github.com/muzudho/kifuwarabe-uec17/kernel/types/level2/record_item"
 	stone "github.com/muzudho/kifuwarabe-uec17/kernel/types/level2/stone"
 )
 
@@ -22,7 +23,7 @@ type Record struct {
 	positionNumber PositionNumberInt
 
 	// 手毎
-	items []*RecordItem
+	items []*record_item.RecordItem
 }
 
 // NewRecord - 新規作成
@@ -37,10 +38,10 @@ func NewRecord(maxPositionNumber PositionNumberInt, memoryBoardArea int, playFir
 	// 例えば、0手目が初期局面として、 400 手目まであるとすると、要素数は401要る。だから 1 足す
 	// しかし、プレイアウトでは終局まで打ちたいので、多めにとっておきたいのでは。盤サイズより適当に18倍（>2πe）取る
 	var positionLength = int(math.Max(float64(maxPositionNumber+1), float64(memoryBoardArea*18)))
-	r.items = make([]*RecordItem, positionLength)
+	r.items = make([]*record_item.RecordItem, positionLength)
 
 	for i := PositionNumberInt(0); i < PositionNumberInt(positionLength); i++ {
-		r.items[i] = NewRecordItem()
+		r.items[i] = record_item.NewRecordItem()
 	}
 
 	return r
@@ -69,10 +70,10 @@ func (r *Record) Push(placePlay point.Point,
 	ko point.Point) {
 
 	var item = r.items[r.positionNumber]
-	item.placePlay = placePlay
+	item.PlacePlay = placePlay
 
 	// [O22o7o1o0] コウの位置
-	item.ko = ko
+	item.Ko = ko
 
 	r.positionNumber++
 }
@@ -84,7 +85,7 @@ func (r *Record) RemoveTail(placePlay point.Point) {
 }
 
 // ForeachItem - 各要素
-func (r *Record) ForeachItem(setItem func(PositionNumberInt, *RecordItem)) {
+func (r *Record) ForeachItem(setItem func(PositionNumberInt, *record_item.RecordItem)) {
 	for i := PositionNumberInt(0); i < r.positionNumber; i++ {
 		setItem(i, r.items[i])
 	}
@@ -97,7 +98,7 @@ func (r *Record) IsKo(placePlay point.Point) bool {
 	var positionNumber = r.GetPositionNumber()
 	if 2 <= positionNumber {
 		var item = r.items[positionNumber-2]
-		return item.ko == placePlay
+		return item.Ko == placePlay
 	}
 
 	return false

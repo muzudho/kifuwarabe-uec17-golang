@@ -1,14 +1,15 @@
 package kernel
 
+// Level 1
 import point "github.com/muzudho/kifuwarabe-uec17/kernel/types/level1/point"
 
 // RecordItem - 棋譜の一手分
 type RecordItem struct {
 	// 着手点
-	placePlay point.Point
+	PlacePlay point.Point
 
 	// [O22o7o1o0] コウの位置
-	ko point.Point
+	Ko point.Point
 }
 
 // NewRecordItem - 棋譜の一手分
@@ -19,6 +20,6 @@ func NewRecordItem() *RecordItem {
 
 // Clear - 空っぽにします
 func (ri *RecordItem) Clear() {
-	ri.placePlay = point.Point(0)
-	ri.ko = point.Point(0)
+	ri.PlacePlay = point.Point(0)
+	ri.Ko = point.Point(0)
 }
