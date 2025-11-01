@@ -3,8 +3,8 @@ package stone
 import (
 	"fmt"
 
-	// Level 1
-	color "github.com/muzudho/kifuwarabe-uec17/kernel/types/level1/color"
+	// Level 2.1
+	color "github.com/muzudho/kifuwarabe-uec17/kernel/level_2_attribute_like/sub_level_1/color"
 )
 
 // Stone - 石の色
