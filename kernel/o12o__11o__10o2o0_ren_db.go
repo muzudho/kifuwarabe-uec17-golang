@@ -16,6 +16,7 @@ import (
 
 	// Level 3
 	rentype "github.com/muzudho/kifuwarabe-uec17/kernel/types/level3/ren"
+	ren_db_doc_header "github.com/muzudho/kifuwarabe-uec17/kernel/types/level3/ren_db_doc_header"
 )
 
 // GetRenId - 連のIdを取得
@@ -29,7 +30,7 @@ func GetRenId(boardMemoryWidth int, positionNthFigure int, movesNum1 moves_num.M
 // RenDb - 連データベース
 type RenDb struct {
 	// Header - ヘッダー
-	Header RenDbDocHeader `json:"header"`
+	Header ren_db_doc_header.RenDbDocHeader `json:"header"`
 
 	// 要素
 	Rens map[ren_id.RenId]*rentype.Ren `json:"rens"`
@@ -118,33 +119,4 @@ func (db *RenDb) RefreshToExternalFile(convertLocation func(point.Point) string)
 	for _, ren1 := range db.Rens {
 		ren1.RefreshToExternalFile(convertLocation)
 	}
-}
-
-// RenDbDocHeader - ヘッダー
-type RenDbDocHeader struct {
-	// BoardWidth - 盤の横幅
-	BoardWidth int `json:"boardWidth"`
-	// BoardHeight - 盤の縦幅
-	BoardHeight int `json:"boardHeight"`
-}
-
-// Init - 初期化
-func (h *RenDbDocHeader) Init(boardWidth int, boardHeight int) {
-	h.BoardWidth = boardWidth
-	h.BoardHeight = boardHeight
-}
-
-// GetBoardMemoryArea - 枠付き盤の面積
-func (h *RenDbDocHeader) GetBoardMemoryArea() int {
-	return h.GetBoardMemoryWidth() * h.GetBoardMemoryHeight()
-}
-
-// GetBoardMemoryWidth - 枠付き盤の横幅
-func (h *RenDbDocHeader) GetBoardMemoryWidth() int {
-	return h.BoardWidth + board_coordinate.BothSidesWallThickness
-}
-
-// GetBoardMemoryHeight - 枠付き盤の縦幅
-func (h *RenDbDocHeader) GetBoardMemoryHeight() int {
-	return h.BoardHeight + board_coordinate.BothSidesWallThickness
 }
