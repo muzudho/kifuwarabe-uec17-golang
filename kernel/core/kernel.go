@@ -31,9 +31,11 @@ import (
 	// Level 6.2
 	record "github.com/muzudho/kifuwarabe-uec17/kernel/level_6_database/sublevel_2/record"
 
+	// Level 6.3
+	ren_db "github.com/muzudho/kifuwarabe-uec17/kernel/level_6_database/sublevel_3/ren_db"
+
 	//
 	position "github.com/muzudho/kifuwarabe-uec17/kernel/types/level4/position"
-	ren_db "github.com/muzudho/kifuwarabe-uec17/kernel/types/level4/ren_db"
 )
 
 // Kernel - カーネル
