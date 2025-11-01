@@ -19,6 +19,9 @@ import (
 	record_item "github.com/muzudho/kifuwarabe-uec17/kernel/types/level2/record_item"
 	stone "github.com/muzudho/kifuwarabe-uec17/kernel/types/level2/stone"
 
+	// Level 3
+	record "github.com/muzudho/kifuwarabe-uec17/kernel/types/level3/record"
+
 	// Level 4
 	ren_db "github.com/muzudho/kifuwarabe-uec17/kernel/types/level4/ren_db"
 )
@@ -29,7 +32,7 @@ type Kernel struct {
 	Position *Position
 
 	// Record - [O12o__11o_3o0] 棋譜
-	Record Record
+	Record record.Record
 
 	// RenDb - [O12o__11o__10o3o0] 連データベース
 	renDb *ren_db.RenDb
@@ -43,7 +46,7 @@ func NewDirtyKernel(gameRuleSettings game_rule_settings.GameRuleSettings, boardW
 	k.Position = NewDirtyPosition(gameRuleSettings, boardWidht, boardHeight)
 
 	// [O12o__11o_2o0] 棋譜の初期化
-	k.Record = *NewRecord(maxMovesNum, k.Position.Board.coordinate.GetMemoryArea(), playFirst)
+	k.Record = *record.NewRecord(maxMovesNum, k.Position.Board.coordinate.GetMemoryArea(), playFirst)
 
 	// RenDb - [O12o__11o__10o3o0] 連データベース
 	k.renDb = ren_db.NewRenDb(k.Position.Board.coordinate.GetWidth(), k.Position.Board.coordinate.GetHeight())

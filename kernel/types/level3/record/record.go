@@ -1,6 +1,4 @@
-// BOF [O12o__11o_2o0]
-
-package kernel
+package record
 
 import (
 	"math"
@@ -22,7 +20,7 @@ type Record struct {
 	playFirst stone.Stone
 
 	// 何手目。基数
-	movesNum1 moves_num.MovesNum
+	MovesNum1 moves_num.MovesNum
 
 	// 手毎
 	items []*record_item.RecordItem
@@ -63,7 +61,7 @@ func (r *Record) GetMaxPosNth() int {
 
 // GetMovesNum - 何手目。基数
 func (r *Record) GetMovesNum() moves_num.MovesNum {
-	return r.movesNum1
+	return r.MovesNum1
 }
 
 // Push - 末尾に追加
@@ -71,24 +69,24 @@ func (r *Record) Push(placePlay point.Point,
 	// [O22o7o1o0] コウの位置
 	ko point.Point) {
 
-	var item = r.items[r.movesNum1]
+	var item = r.items[r.MovesNum1]
 	item.PlacePlay = placePlay
 
 	// [O22o7o1o0] コウの位置
 	item.Ko = ko
 
-	r.movesNum1++
+	r.MovesNum1++
 }
 
 // RemoveTail - 末尾を削除
 func (r *Record) RemoveTail(placePlay point.Point) {
-	r.movesNum1--
-	r.items[r.movesNum1].Clear()
+	r.MovesNum1--
+	r.items[r.MovesNum1].Clear()
 }
 
 // ForeachItem - 各要素
 func (r *Record) ForeachItem(setItem func(moves_num.MovesNum, *record_item.RecordItem)) {
-	for i := moves_num.MovesNum(0); i < r.movesNum1; i++ {
+	for i := moves_num.MovesNum(0); i < r.MovesNum1; i++ {
 		setItem(i, r.items[i])
 	}
 }
