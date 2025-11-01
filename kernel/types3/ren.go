@@ -5,9 +5,12 @@ import (
 	"math"
 	"strings"
 
+	// Level 1
 	color "github.com/muzudho/kifuwarabe-uec17/kernel/types/level1/color"
 	point "github.com/muzudho/kifuwarabe-uec17/kernel/types/level1/point"
-	types2 "github.com/muzudho/kifuwarabe-uec17/kernel/types2"
+
+	// Level 2
+	stone "github.com/muzudho/kifuwarabe-uec17/kernel/types/level2/stone"
 )
 
 // Ren - 連，れん
@@ -22,7 +25,7 @@ type Ren struct {
 	// 隣接する石の色
 	AdjacentColor color.Color
 	// 石
-	Stone types2.Stone
+	Stone stone.Stone
 	// 要素の石の位置
 	Locations []point.Point
 	// 呼吸点の位置
@@ -36,7 +39,7 @@ type Ren struct {
 // Parameters
 // ----------
 // color - 色
-func NewRen(stone types2.Stone) *Ren {
+func NewRen(stone stone.Stone) *Ren {
 	var r = new(Ren)
 	r.Stone = stone
 	r.AdjacentColor = color.Color_None
@@ -55,7 +58,7 @@ func (r *Ren) GetLibertyArea() int {
 }
 
 // GetStone - 石
-func (r *Ren) GetStone() types2.Stone {
+func (r *Ren) GetStone() stone.Stone {
 	return r.Stone
 }
 

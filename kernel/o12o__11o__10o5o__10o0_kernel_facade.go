@@ -8,8 +8,12 @@ import (
 	"os"
 	"strings"
 
+	// Level 1
 	point "github.com/muzudho/kifuwarabe-uec17/kernel/types/level1/point"
-	types2 "github.com/muzudho/kifuwarabe-uec17/kernel/types2"
+
+	// Level 2
+	stone "github.com/muzudho/kifuwarabe-uec17/kernel/types/level2/stone"
+
 	types3 "github.com/muzudho/kifuwarabe-uec17/kernel/types3"
 )
 
@@ -43,13 +47,13 @@ func (k *Kernel) LoadRenDb(path string, onError func(error) bool) bool {
 // RefreshRenToInternal - TODO 外部ファイルから入力された内容を内部状態に適用します
 func (k *Kernel) RefreshRenToInternal(r *types3.Ren) bool {
 	{
-		var getDefaultStone = func() (bool, types2.Stone) {
+		var getDefaultStone = func() (bool, stone.Stone) {
 			panic(fmt.Sprintf("unexpected stone:%s", r.Sto))
 		}
 
 		// TODO stone from r.Sto
 		// Example: "x" --> black
-		var isOk, stone = types2.GetStoneFromChar(r.Sto, getDefaultStone)
+		var isOk, stone = stone.GetStoneFromChar(r.Sto, getDefaultStone)
 		if !isOk {
 			return false
 		}
@@ -93,7 +97,7 @@ func (k *Kernel) RefreshRenToInternal(r *types3.Ren) bool {
 func (k *Kernel) RemoveRen(ren *types3.Ren) {
 	// 空点をセット
 	var setLocation = func(i int, location point.Point) {
-		k.Position.Board.SetStoneAt(location, types2.Stone_Space)
+		k.Position.Board.SetStoneAt(location, stone.Stone_Space)
 	}
 
 	// 場所毎に

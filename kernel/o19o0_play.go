@@ -11,7 +11,9 @@ import (
 
 	// Level 2
 	board_coordinate "github.com/muzudho/kifuwarabe-uec17/kernel/types/level2/board_coordinate"
-	types2 "github.com/muzudho/kifuwarabe-uec17/kernel/types2"
+	stone "github.com/muzudho/kifuwarabe-uec17/kernel/types/level2/stone"
+
+	// Level 3
 	types3 "github.com/muzudho/kifuwarabe-uec17/kernel/types3"
 )
 
@@ -24,13 +26,13 @@ func (k *Kernel) DoPlay(command string, logg *Logger) {
 	var tokens = strings.Split(command, " ")
 	var stoneName = tokens[1]
 
-	var getDefaultStone = func() (bool, types2.Stone) {
+	var getDefaultStone = func() (bool, stone.Stone) {
 		logg.C.Infof("? unexpected stone:%s\n", stoneName)
 		logg.J.Infow("error", "stone", stoneName)
-		return false, types2.Stone_Space
+		return false, stone.Stone_Space
 	}
 
-	var isOk1, stone = types2.GetStoneFromName(stoneName, getDefaultStone)
+	var isOk1, stone = stone.GetStoneFromName(stoneName, getDefaultStone)
 	if !isOk1 {
 		return
 	}
@@ -96,7 +98,7 @@ func (k *Kernel) DoPlay(command string, logg *Logger) {
 // =======
 // isOk : bool
 // - 石を置けたら真、置けなかったら偽
-func (k *Kernel) Play(stoneA types2.Stone, placePlay point.Point, logg *Logger,
+func (k *Kernel) Play(stoneA stone.Stone, placePlay point.Point, logg *Logger,
 	// [O22o1o2o0] onMasonry
 	onMasonry func() bool,
 	// [O22o3o1o0] onOpponentEye
@@ -132,7 +134,7 @@ func (k *Kernel) Play(stoneA types2.Stone, placePlay point.Point, logg *Logger,
 			k.Position.Board.SetStoneAt(placePlay, stoneA) // いったん、石を置く
 			isExists4rensToRemove, o4rensToRemove = k.GetRenToCapture(placePlay)
 			isChecked4rensToRemove = true
-			k.Position.Board.SetStoneAt(placePlay, types2.Stone_Space) // 石を取り除く
+			k.Position.Board.SetStoneAt(placePlay, stone.Stone_Space) // 石を取り除く
 
 			if !isExists4rensToRemove {
 				// `Captured` ルールと被らなければ

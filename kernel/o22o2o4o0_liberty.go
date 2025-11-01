@@ -6,7 +6,9 @@ import (
 
 	// Level 2
 	board_coordinate "github.com/muzudho/kifuwarabe-uec17/kernel/types/level2/board_coordinate"
-	types2 "github.com/muzudho/kifuwarabe-uec17/kernel/types2"
+	stone "github.com/muzudho/kifuwarabe-uec17/kernel/types/level2/stone"
+
+	// Level 3
 	types3 "github.com/muzudho/kifuwarabe-uec17/kernel/types3"
 )
 
@@ -65,7 +67,7 @@ func (ls *LibertySearchAlgorithm) findRen(arbitraryPoint point.Point) (*types3.R
 	// 連の初期化
 	ls.foundRen = types3.NewRen(ls.board.GetStoneAt(arbitraryPoint))
 
-	if ls.foundRen.Stone == types2.Stone_Space {
+	if ls.foundRen.Stone == stone.Stone_Space {
 		ls.searchSpaceRen(arbitraryPoint)
 	} else {
 		ls.searchStoneRenRecursive(arbitraryPoint)
@@ -93,10 +95,10 @@ func (ls *LibertySearchAlgorithm) searchStoneRenRecursive(here point.Point) {
 	// 隣接する交点毎に
 	var eachAdjacent = func(dir board_coordinate.Cell_4Directions, p point.Point) {
 
-		var stone = ls.board.GetStoneAt(p) // 石の色
-		switch stone {
+		var stone1 = ls.board.GetStoneAt(p) // 石の色
+		switch stone1 {
 
-		case types2.Stone_Space: // 空点
+		case stone.Stone_Space: // 空点
 			if !ls.checkBoard.Contains(p, Mark_BitLiberty) { // まだチェックしていない呼吸点なら
 				ls.checkBoard.Overwrite(p, Mark_BitLiberty)
 				ls.foundRen.LibertyLocations = append(ls.foundRen.LibertyLocations, p) // 呼吸点を追加
@@ -104,7 +106,7 @@ func (ls *LibertySearchAlgorithm) searchStoneRenRecursive(here point.Point) {
 
 			return // あとの処理をスキップ
 
-		case types2.Stone_Wall: // 枠
+		case stone.Stone_Wall: // 枠
 			return // あとの処理をスキップ
 		}
 
@@ -113,11 +115,11 @@ func (ls *LibertySearchAlgorithm) searchStoneRenRecursive(here point.Point) {
 			return
 		}
 
-		var color = stone.GetColor()
+		var color = stone1.GetColor()
 		// 隣接する色、追加
 		ls.foundRen.AdjacentColor = ls.foundRen.AdjacentColor.GetAdded(color)
 
-		if stone == ls.foundRen.Stone { // 同じ石
+		if stone1 == ls.foundRen.Stone { // 同じ石
 			ls.searchStoneRenRecursive(p) // 再帰
 		}
 	}
@@ -138,12 +140,12 @@ func (ls *LibertySearchAlgorithm) searchSpaceRen(here point.Point) {
 			return
 		}
 
-		var stone = ls.board.GetStoneAt(p)
-		if stone != types2.Stone_Space { // 空点でなければスキップ
+		var stone1 = ls.board.GetStoneAt(p)
+		if stone1 != stone.Stone_Space { // 空点でなければスキップ
 			return
 		}
 
-		var color = stone.GetColor()
+		var color = stone1.GetColor()
 		// 隣接する色、追加
 		ls.foundRen.AdjacentColor = ls.foundRen.AdjacentColor.GetAdded(color)
 		ls.searchSpaceRen(p) // 再帰

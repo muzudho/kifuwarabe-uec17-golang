@@ -10,7 +10,9 @@ import (
 
 	dbg "github.com/muzudho/kifuwarabe-uec17/debugger"
 	"github.com/muzudho/kifuwarabe-uec17/kernel"
-	types2 "github.com/muzudho/kifuwarabe-uec17/kernel/types2"
+
+	// Level 2
+	stone "github.com/muzudho/kifuwarabe-uec17/kernel/types/level2/stone"
 )
 
 // [O11o_1o0] グローバル変数として、バーチャルIOを１つ新規作成
@@ -76,7 +78,7 @@ func main() {
 		// fmt.Println("go run . {programName}")
 
 		// [O12o__11o_4o0] 棋譜の初期化に利用
-		var onUnknownTurn = func() types2.Stone {
+		var onUnknownTurn = func() stone.Stone {
 			var errMsg = fmt.Sprintf("? unexpected play_first:%s", engineConfig.GetPlayFirst())
 			logg.C.Info(errMsg)
 			logg.J.Infow("error", "play_first", engineConfig.GetPlayFirst())
@@ -88,7 +90,7 @@ func main() {
 		var kernel1 = kernel.NewDirtyKernel(*gameRule, engineConfig.GetBoardSize(), engineConfig.GetBoardSize(),
 			// [O12o__11o_4o0] 棋譜の初期化
 			kernel.PositionNumberInt(engineConfig.GetMaxPositionNumber()),
-			types2.GetStoneOrDefaultFromTurn(engineConfig.GetPlayFirst(), onUnknownTurn))
+			stone.GetStoneOrDefaultFromTurn(engineConfig.GetPlayFirst(), onUnknownTurn))
 		// 設定ファイルの内容をカーネルへ反映
 		kernel1.Position.Board.Init(engineConfig.GetBoardSize(), engineConfig.GetBoardSize())
 

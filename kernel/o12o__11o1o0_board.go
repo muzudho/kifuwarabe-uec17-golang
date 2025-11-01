@@ -7,7 +7,7 @@ import (
 
 	// Level 2
 	board_coordinate "github.com/muzudho/kifuwarabe-uec17/kernel/types/level2/board_coordinate"
-	types2 "github.com/muzudho/kifuwarabe-uec17/kernel/types2"
+	stone "github.com/muzudho/kifuwarabe-uec17/kernel/types/level2/stone"
 )
 
 // Board - 盤
@@ -20,7 +20,7 @@ type Board struct {
 	// 交点
 	//
 	// * 英語で交点は node かも知れないが、表計算でよく使われる cell の方を使う
-	cells []types2.Stone
+	cells []stone.Stone
 }
 
 // NewBoard - 新規作成
@@ -68,12 +68,12 @@ func (b *Board) GetCoordinate() *board_coordinate.BoardCoordinate {
 }
 
 // GetStoneAt - 指定座標の石を取得
-func (b *Board) GetStoneAt(i point.Point) types2.Stone {
+func (b *Board) GetStoneAt(i point.Point) stone.Stone {
 	return b.cells[i]
 }
 
 // SetStoneAt - 指定座標の石を設定
-func (b *Board) SetStoneAt(i point.Point, s types2.Stone) {
+func (b *Board) SetStoneAt(i point.Point, s stone.Stone) {
 	b.cells[i] = s
 }
 
@@ -84,14 +84,14 @@ func (b *Board) GetColorAt(i point.Point) color.Color {
 
 // IsEmpty - 指定の交点は空点か？
 func (b *Board) IsSpaceAt(point point.Point) bool {
-	return b.GetStoneAt(point) == types2.Stone_Space
+	return b.GetStoneAt(point) == stone.Stone_Space
 }
 
 // サイズ変更
 func (b *Board) resize(width int, height int) {
 	b.coordinate.MemoryWidth = width + board_coordinate.BothSidesWallThickness
 	b.coordinate.MemoryHeight = height + board_coordinate.BothSidesWallThickness
-	b.cells = make([]types2.Stone, b.coordinate.GetMemoryArea())
+	b.cells = make([]stone.Stone, b.coordinate.GetMemoryArea())
 
 	// ４方向（東、北、西、南）の番地への相対インデックス
 	b.coordinate.Cell4Directions = [4]point.Point{1, point.Point(-b.coordinate.GetMemoryWidth()), -1, point.Point(b.coordinate.GetMemoryWidth())}

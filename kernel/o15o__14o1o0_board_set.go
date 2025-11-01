@@ -6,8 +6,11 @@ import (
 	"os"
 	"strings"
 
+	// Level 1
 	point "github.com/muzudho/kifuwarabe-uec17/kernel/types/level1/point"
-	types2 "github.com/muzudho/kifuwarabe-uec17/kernel/types2"
+
+	// Level 2
+	stone "github.com/muzudho/kifuwarabe-uec17/kernel/types/level2/stone"
 )
 
 // DoSetBoard - 盤面を設定する
@@ -29,15 +32,15 @@ func (k *Kernel) DoSetBoard(command string, logg *Logger) {
 			return
 		}
 
-		var getDefaultStone = func() (bool, types2.Stone) {
-			return false, types2.Stone_Space
+		var getDefaultStone = func() (bool, stone.Stone) {
+			return false, stone.Stone_Space
 		}
 
 		var size = k.Position.Board.coordinate.GetMemoryArea()
 		var i point.Point = 0
 		for _, c := range string(fileData) {
 			var str = string([]rune{c})
-			var isOk, stone = types2.GetStoneFromChar(str, getDefaultStone)
+			var isOk, stone = stone.GetStoneFromChar(str, getDefaultStone)
 
 			if isOk {
 				if size <= int(i) {

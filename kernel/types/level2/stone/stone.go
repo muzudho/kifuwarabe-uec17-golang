@@ -1,4 +1,4 @@
-package types2
+package stone
 
 import (
 	"fmt"
