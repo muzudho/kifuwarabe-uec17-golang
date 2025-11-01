@@ -2,12 +2,14 @@
 
 package kernel
 
+import logger "github.com/muzudho/kifuwarabe-uec17/kernel/logger"
+
 // DoUndoPlay - 石を打ったのを戻す
 //
 // * `command` - Example: `undo`
 // ........................----
 // ........................0
-func (k *Kernel) DoUndoPlay(command string, logg *Logger) {
+func (k *Kernel) DoUndoPlay(command string, logg *logger.Logger) {
 	k.UndoPlay()
 }
 

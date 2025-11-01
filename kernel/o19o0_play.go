@@ -6,6 +6,8 @@ import (
 	"math"
 	"strings"
 
+	logger "github.com/muzudho/kifuwarabe-uec17/kernel/logger"
+
 	// Level 1
 	point "github.com/muzudho/kifuwarabe-uec17/kernel/types/level1/point"
 
@@ -22,7 +24,7 @@ import (
 // * `command` - Example: `play black A19`
 // ........................---- ----- ---
 // ........................0    1     2
-func (k *Kernel) DoPlay(command string, logg *Logger) {
+func (k *Kernel) DoPlay(command string, logg *logger.Logger) {
 	var tokens = strings.Split(command, " ")
 	var stoneName = tokens[1]
 
@@ -98,7 +100,7 @@ func (k *Kernel) DoPlay(command string, logg *Logger) {
 // =======
 // isOk : bool
 // - 石を置けたら真、置けなかったら偽
-func (k *Kernel) Play(stoneA stone.Stone, placePlay point.Point, logg *Logger,
+func (k *Kernel) Play(stoneA stone.Stone, placePlay point.Point, logg *logger.Logger,
 	// [O22o1o2o0] onMasonry
 	onMasonry func() bool,
 	// [O22o3o1o0] onOpponentEye

@@ -8,9 +8,11 @@ import (
 	"os"
 	"strings"
 
-	kernel "github.com/muzudho/kifuwarabe-uec17/kernel"
-
 	dbg "github.com/muzudho/kifuwarabe-uec17/debugger"
+
+	// Kernel
+	kernel "github.com/muzudho/kifuwarabe-uec17/kernel"
+	logger "github.com/muzudho/kifuwarabe-uec17/kernel/logger"
 
 	// Level 1
 	komi_float "github.com/muzudho/kifuwarabe-uec17/kernel/types/level1/komi_float"
@@ -55,7 +57,7 @@ func main() {
 	var jsonLogFile, _ = os.OpenFile(engineConfig.GetJsonLog(), os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
 	defer jsonLogFile.Close() // ログファイル使用済み時にファイルを閉じる
 	// カスタマイズしたロガーを使うなら
-	var logg = kernel.NewSugaredLoggerForGame(plainTextLogFile, jsonLogFile) // customized LOGGer
+	var logg = logger.NewSugaredLoggerForGame(plainTextLogFile, jsonLogFile) // customized LOGGer
 
 	// [O11o__11o6o0] デバッグ用
 	if *pIsDebug {

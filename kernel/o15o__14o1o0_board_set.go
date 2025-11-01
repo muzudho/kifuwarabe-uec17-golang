@@ -6,6 +6,8 @@ import (
 	"os"
 	"strings"
 
+	logger "github.com/muzudho/kifuwarabe-uec17/kernel/logger"
+
 	// Level 1
 	point "github.com/muzudho/kifuwarabe-uec17/kernel/types/level1/point"
 
@@ -19,7 +21,7 @@ import (
 // * `command` - Example: `board_set file data/board1.txt`
 // ........................--------- ---- ---------------
 // ........................0         1    2
-func (k *Kernel) DoSetBoard(command string, logg *Logger) {
+func (k *Kernel) DoSetBoard(command string, logg *logger.Logger) {
 	var tokens = strings.Split(command, " ")
 
 	if tokens[1] == "file" {

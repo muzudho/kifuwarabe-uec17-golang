@@ -8,6 +8,8 @@ import (
 	"strconv"
 	"strings"
 
+	logger "github.com/muzudho/kifuwarabe-uec17/kernel/logger"
+
 	// Level 1
 	geta "github.com/muzudho/kifuwarabe-uec17/kernel/types/level1/geta"
 	moves_num "github.com/muzudho/kifuwarabe-uec17/kernel/types/level1/moves_num"
@@ -61,7 +63,7 @@ func NewDirtyKernel(gameRuleSettings game_rule_settings.GameRuleSettings, boardW
 // -------
 // isHandled : bool
 // 正常終了またはエラーなら真、無視したら偽
-func (k *Kernel) Execute(command string, logg *Logger) bool {
+func (k *Kernel) Execute(command string, logg *logger.Logger) bool {
 
 	var tokens = strings.Split(command, " ")
 	switch tokens[0] {

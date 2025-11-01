@@ -1,6 +1,4 @@
-// BOF [O11o__10o2o0]
-
-package kernel
+package logger
 
 import (
 	"os"
@@ -105,5 +103,3 @@ func encodeTimeSimpleInJapan(t time.Time, enc zapcore.PrimitiveArrayEncoder) {
 	jst := time.FixedZone("Asia/Tokyo", 9*60*60)
 	enc.AppendString(t.In(jst).Format(layout))
 }
-
-// EOF [O11o__10o2o0]
