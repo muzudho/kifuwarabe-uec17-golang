@@ -6,7 +6,7 @@ import (
 	"math"
 	"strings"
 
-	logger "github.com/muzudho/kifuwarabe-uec17/kernel/logger"
+	logger "github.com/muzudho/kifuwarabe-uec17/kernel/level_1_for_maintenance/logger"
 
 	// Level 1
 	point "github.com/muzudho/kifuwarabe-uec17/kernel/types/level1/point"

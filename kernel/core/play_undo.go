@@ -2,7 +2,7 @@
 
 package core
 
-import logger "github.com/muzudho/kifuwarabe-uec17/kernel/logger"
+import logger "github.com/muzudho/kifuwarabe-uec17/kernel/level_1_for_maintenance/logger"
 
 // DoUndoPlay - 石を打ったのを戻す
 //

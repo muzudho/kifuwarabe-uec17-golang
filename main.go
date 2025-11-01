@@ -12,7 +12,7 @@ import (
 
 	// Kernel
 	kernel_core "github.com/muzudho/kifuwarabe-uec17/kernel/core"
-	logger "github.com/muzudho/kifuwarabe-uec17/kernel/logger"
+	logger "github.com/muzudho/kifuwarabe-uec17/kernel/level_1_for_maintenance/logger"
 
 	// Level 1
 	komi_float "github.com/muzudho/kifuwarabe-uec17/kernel/types/level1/komi_float"
