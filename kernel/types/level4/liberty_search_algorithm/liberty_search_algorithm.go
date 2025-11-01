@@ -11,11 +11,11 @@ import (
 	stone "github.com/muzudho/kifuwarabe-uec17/kernel/level_3_physical/sublevel_1/stone"
 
 	// Level 4.1
-	mark "github.com/muzudho/kifuwarabe-uec17/kernel/level_4_technical_conceptual/sublevel_1/mark"
+	mark "github.com/muzudho/kifuwarabe-uec17/kernel/level_5_game_technic/sublevel_1/mark"
 
 	//
+	check_board "github.com/muzudho/kifuwarabe-uec17/kernel/level_4_game_rule/sublevel_1/check_board"
 	board "github.com/muzudho/kifuwarabe-uec17/kernel/types/level3/board"
-	check_board "github.com/muzudho/kifuwarabe-uec17/kernel/types/level3/check_board"
 	rentype "github.com/muzudho/kifuwarabe-uec17/kernel/types/level3/ren"
 )
 

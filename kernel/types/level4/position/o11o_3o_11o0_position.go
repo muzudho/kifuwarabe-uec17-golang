@@ -1,12 +1,12 @@
 package position
 
 import (
-	// Level 2
-	game_rule_settings "github.com/muzudho/kifuwarabe-uec17/kernel/types/level2/game_rule_settings"
+	// Level 4.1
+	check_board "github.com/muzudho/kifuwarabe-uec17/kernel/level_4_game_rule/sublevel_1/check_board"
 
-	// Level 3
+	//
+	game_rule_settings "github.com/muzudho/kifuwarabe-uec17/kernel/types/level2/game_rule_settings"
 	board "github.com/muzudho/kifuwarabe-uec17/kernel/types/level3/board"
-	check_board "github.com/muzudho/kifuwarabe-uec17/kernel/types/level3/check_board"
 )
 
 type Position struct {
