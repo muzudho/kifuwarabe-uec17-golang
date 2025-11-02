@@ -11,7 +11,7 @@ import (
 	dbg "github.com/muzudho/kifuwarabe-uec17-golang/debugger"
 
 	// Level 1
-	logger "github.com/muzudho/kifuwarabe-uec17-golang/kernel/level_1_for_maintenance/logger"
+	logger "github.com/muzudho/kifuwarabe-uec17-golang/kernel/part_1_facility/chapter_1_io/section_1/logger"
 
 	// Level 2.1
 	komi_float "github.com/muzudho/kifuwarabe-uec17-golang/kernel/level_2_conceptual/sublevel_1/komi_float"
