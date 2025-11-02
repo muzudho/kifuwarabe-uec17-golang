@@ -88,7 +88,7 @@ func (k *Kernel) ReadCommand(command string, text_i_o *text_i_o.TextIO, log1 *lo
 		var sideLength, err = strconv.Atoi(tokens[1])
 
 		if err != nil {
-			log1.C.Infof("? unexpected sideLength:%s\n", tokens[1])
+			text_i_o.GoCommand(fmt.Sprintf("? unexpected sideLength:%s\n", tokens[1]))
 			log1.J.Infow("error", "sideLength", tokens[1])
 			return true
 		}
@@ -112,8 +112,8 @@ func (k *Kernel) ReadCommand(command string, text_i_o *text_i_o.TextIO, log1 *lo
 	// 独自実装：　盤をファイルから読み込んでセットする
 	// Example: `board_set file data/board1.txt`
 	case "board_set":
-		k.DoSetBoard(command, log1)
-		log1.C.Infof("=\n")
+		k.DoSetBoard(command, text_i_o, log1)
+		text_i_o.GoCommand("=\n")
 		log1.J.Infow("ok")
 		return true
 
@@ -180,7 +180,7 @@ func (k *Kernel) ReadCommand(command string, text_i_o *text_i_o.TextIO, log1 *lo
 		switch method {
 		case "get":
 			var value = k.Position.CanNotPutOnMyEye
-			log1.C.Infof("= %t\n", value)
+			text_i_o.GoCommand(fmt.Sprintf("= %t\n", value))
 			log1.J.Infow("ok", "value", value)
 			return true
 
@@ -194,13 +194,13 @@ func (k *Kernel) ReadCommand(command string, text_i_o *text_i_o.TextIO, log1 *lo
 				k.Position.CanNotPutOnMyEye = false
 				return true
 			default:
-				log1.C.Infof("? unexpected method:%s value:%s\n", method, value)
+				text_i_o.GoCommand(fmt.Sprintf("? unexpected method:%s value:%s\n", method, value))
 				log1.J.Infow("error", "method", method, "value", value)
 				return true
 			}
 
 		default:
-			log1.C.Infof("? unexpected method:%s\n", method)
+			text_i_o.GoCommand(fmt.Sprintf("? unexpected method:%s\n", method))
 			log1.J.Infow("error", "method", method)
 			return true
 		}
@@ -209,7 +209,7 @@ func (k *Kernel) ReadCommand(command string, text_i_o *text_i_o.TextIO, log1 *lo
 	// Example: `find_all_rens`
 	case "find_all_rens":
 		k.FindAllRens()
-		log1.C.Infof("=\n")
+		text_i_o.GoCommand("=\n")
 		log1.J.Infow("ok")
 		return true
 
@@ -238,7 +238,7 @@ func (k *Kernel) ReadCommand(command string, text_i_o *text_i_o.TextIO, log1 *lo
 		if 0 < len(text) {
 			text = text[:len(text)-1]
 		}
-		log1.C.Infof("= record:'%s'\n", text)
+		text_i_o.GoCommand(fmt.Sprintf("= record:'%s'\n", text))
 		log1.J.Infow("ok", "record", text)
 		return true
 
@@ -249,12 +249,12 @@ func (k *Kernel) ReadCommand(command string, text_i_o *text_i_o.TextIO, log1 *lo
 		var ren, isFound = k.GetLiberty(point)
 		if isFound {
 			k.RemoveRen(ren)
-			log1.C.Infof("=\n")
+			text_i_o.GoCommand("=\n")
 			log1.J.Infow("ok")
 			return true
 		}
 
-		log1.C.Infof("? not found ren coord:%s%\n", coord)
+		text_i_o.GoCommand(fmt.Sprintf("? not found ren coord:%s\n", coord))
 		log1.J.Infow("error not found ren", "coord", coord)
 		return false
 
@@ -262,7 +262,7 @@ func (k *Kernel) ReadCommand(command string, text_i_o *text_i_o.TextIO, log1 *lo
 	// Example: `rendb_dump`
 	case "rendb_dump":
 		var text = k.renDb.Dump()
-		log1.C.Infof("= dump'''%s\n'''\n", text)
+		text_i_o.GoCommand(fmt.Sprintf("= dump'''%s\n'''\n", text))
 		log1.J.Infow("ok", "dump", text)
 		return true
 
@@ -271,14 +271,14 @@ func (k *Kernel) ReadCommand(command string, text_i_o *text_i_o.TextIO, log1 *lo
 	case "rendb_load":
 		var path = tokens[1]
 		var onError = func(err error) bool {
-			log1.C.Infof("? error:%s\n", err)
+			text_i_o.GoCommand(fmt.Sprintf("? error:%s\n", err))
 			log1.J.Infow("error", "err", err)
 			return false
 		}
 
 		var isOk = k.LoadRenDb(path, onError)
 		if isOk {
-			log1.C.Infof("=\n")
+			text_i_o.GoCommand("=\n")
 			log1.J.Infow("ok")
 			return true
 		}
@@ -294,14 +294,14 @@ func (k *Kernel) ReadCommand(command string, text_i_o *text_i_o.TextIO, log1 *lo
 		}
 
 		var onError = func(err error) bool {
-			log1.C.Infof("? error:%s\n", err)
+			text_i_o.GoCommand(fmt.Sprintf("? error:%s\n", err))
 			log1.J.Infow("error", "err", err)
 			return false
 		}
 
 		var isOk = k.renDb.Save(path, convertLocation, onError)
 		if isOk {
-			log1.C.Infof("=\n")
+			text_i_o.GoCommand("=\n")
 			log1.J.Infow("ok")
 			return true
 		}
@@ -312,7 +312,7 @@ func (k *Kernel) ReadCommand(command string, text_i_o *text_i_o.TextIO, log1 *lo
 	// Example: "test_coord A13"
 	case "test_coord":
 		var point = k.Position.Board.Coordinate.GetPointFromGtpMove(tokens[1])
-		log1.C.Infof("= %d\n", point)
+		text_i_o.GoCommand(fmt.Sprintf("= %d\n", point))
 		log1.J.Infow("output", "point", point)
 		return true
 
@@ -320,7 +320,7 @@ func (k *Kernel) ReadCommand(command string, text_i_o *text_i_o.TextIO, log1 *lo
 	// Example: "test_file A"
 	case "test_file":
 		var file = board_coordinate.GetFileFromCode(tokens[1])
-		log1.C.Infof("= %s\n", file)
+		text_i_o.GoCommand(fmt.Sprintf("= %s\n", file))
 		log1.J.Infow("output", "file", file)
 		return true
 
@@ -330,12 +330,12 @@ func (k *Kernel) ReadCommand(command string, text_i_o *text_i_o.TextIO, log1 *lo
 		var point = k.Position.Board.Coordinate.GetPointFromGtpMove(coord)
 		var ren, isFound = k.GetLiberty(point)
 		if isFound {
-			log1.C.Infof("= ren stone:%s area:%d libertyArea:%d adjacentColor:%s\n", ren.Stone, ren.GetArea(), ren.GetLibertyArea(), ren.AdjacentColor)
+			text_i_o.GoCommand(fmt.Sprintf("= ren stone:%s area:%d libertyArea:%d adjacentColor:%s\n", ren.Stone, ren.GetArea(), ren.GetLibertyArea(), ren.AdjacentColor))
 			log1.J.Infow("output ren", "color", ren.Stone, "area", ren.GetArea(), "libertyArea", ren.GetLibertyArea(), "adjacentColor", ren.AdjacentColor)
 			return true
 		}
 
-		log1.C.Infof("? not found ren coord:%s%\n", coord)
+		text_i_o.GoCommand(fmt.Sprintf("? not found ren coord:%s\n", coord))
 		log1.J.Infow("error not found ren", "coord", coord)
 		return false
 
@@ -344,7 +344,7 @@ func (k *Kernel) ReadCommand(command string, text_i_o *text_i_o.TextIO, log1 *lo
 	case "test_get_point_from_code":
 		var point = k.Position.Board.Coordinate.GetPointFromGtpMove(tokens[1])
 		var code = k.Position.Board.Coordinate.GetGtpMoveFromPoint(point)
-		log1.C.Infof("= %d %s", point, code)
+		text_i_o.GoCommand(fmt.Sprintf("= %d %s", point, code))
 		log1.J.Infow("ok", "point", point, "code", code)
 		return true
 
@@ -353,19 +353,19 @@ func (k *Kernel) ReadCommand(command string, text_i_o *text_i_o.TextIO, log1 *lo
 	case "test_get_point_from_xy":
 		var x, errX = strconv.Atoi(tokens[1])
 		if errX != nil {
-			log1.C.Infof("? unexpected x:%s\n", tokens[1])
+			text_i_o.GoCommand(fmt.Sprintf("? unexpected x:%s\n", tokens[1]))
 			log1.J.Infow("error", "x", tokens[1], "err", errX)
 			return true
 		}
 		var y, errY = strconv.Atoi(tokens[2])
 		if errY != nil {
-			log1.C.Infof("? unexpected y:%s\n", tokens[2])
+			text_i_o.GoCommand(fmt.Sprintf("? unexpected y:%s\n", tokens[2]))
 			log1.J.Infow("error", "y", tokens[2], "err", errY)
 			return true
 		}
 
 		var point = k.Position.Board.Coordinate.GetPointFromXy(x, y)
-		log1.C.Infof("= %d\n", point)
+		text_i_o.GoCommand(fmt.Sprintf("= %d\n", point))
 		log1.J.Infow("output", "point", point)
 		return true
 
@@ -373,7 +373,7 @@ func (k *Kernel) ReadCommand(command string, text_i_o *text_i_o.TextIO, log1 *lo
 	// Example: "test_rank 13"
 	case "test_rank":
 		var rank = board_coordinate.GetRankFromCode(tokens[1])
-		log1.C.Infof("= %s\n", rank)
+		text_i_o.GoCommand(fmt.Sprintf("= %s\n", rank))
 		log1.J.Infow("output", "rank", rank)
 		return true
 
@@ -382,12 +382,12 @@ func (k *Kernel) ReadCommand(command string, text_i_o *text_i_o.TextIO, log1 *lo
 	case "test_x":
 		var x, err = strconv.Atoi(tokens[1])
 		if err != nil {
-			log1.C.Infof("? unexpected x:%s\n", tokens[1])
+			text_i_o.GoCommand(fmt.Sprintf("? unexpected x:%s\n", tokens[1]))
 			log1.J.Infow("error", "x", tokens[1])
 			return true
 		}
 		var file = board_coordinate.GetFileFromX(x)
-		log1.C.Infof("= %s\n", file)
+		text_i_o.GoCommand(fmt.Sprintf("= %s\n", file))
 		log1.J.Infow("output", "file", file)
 		return true
 
@@ -396,12 +396,12 @@ func (k *Kernel) ReadCommand(command string, text_i_o *text_i_o.TextIO, log1 *lo
 	case "test_y":
 		var y, err = strconv.Atoi(tokens[1])
 		if err != nil {
-			log1.C.Infof("? unexpected y:%s\n", tokens[1])
+			text_i_o.GoCommand(fmt.Sprintf("? unexpected y:%s\n", tokens[1]))
 			log1.J.Infow("error", "y", tokens[1])
 			return true
 		}
 		var rank = board_coordinate.GetRankFromY(y)
-		log1.C.Infof("= %s\n", rank)
+		text_i_o.GoCommand(fmt.Sprintf("= %s\n", rank))
 		log1.J.Infow("output", "rank", rank)
 		return true
 

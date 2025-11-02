@@ -91,13 +91,15 @@ func main() {
 	// ========================================
 
 	switch arg1 {
+	// スモークテスト
+	// コマンドライン例： `go run . hello`
 	case "hello":
-		// コマンドライン例： `go run . hello`
-		fmt.Println("Hello, World!")
+		fmt.Println("hello, world")
 
+	// ロガーのテスト
+	// コマンドライン例： `go run . welcome`
 	case "welcome":
-		// ロガーのテスト
-		log1.C.Infof("Welcome! name:'%s' weight:%.1f x:%d", "nihon taro", 92.6, 3)
+		text_i_o.GoCommand(fmt.Sprintf("Welcome! name:'%s' weight:%.1f x:%d", "nihon taro", 92.6, 3))
 		log1.J.Infow("Welcome!",
 			"name", "nihon taro", "weight", 92.6, "x", 3)
 
@@ -129,7 +131,7 @@ func main() {
 			var command = virtualIo.ScannerText()
 
 			// FIXME: 大会の邪魔になるのでは？
-			//log1.C.Infof("# %s", command)             // 人間向けの出力
+			//text_i_o.GoCommand(fmt.Sprintf("# %s", command))             // 人間向けの出力
 
 			log1.J.Infow("input", "command", command) // コンピューター向けの出力
 
@@ -154,7 +156,7 @@ func main() {
 			// -------------------------
 
 			default: // [O11o_1o0]
-				log1.C.Infof("? unknown_command command:'%s'\n", tokens[0])
+				text_i_o.GoCommand(fmt.Sprintf("? unknown_command command:'%s'\n", tokens[0]))
 				log1.J.Infow("? unknown_command", "command", tokens[0])
 			}
 		}
