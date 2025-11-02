@@ -94,7 +94,7 @@ func (k *Kernel) ReadCommand(command string, text_i_o *text_i_o.TextIO, log1 *lo
 		}
 
 		k.Position.Board.Init(sideLength, sideLength)
-		log1.C.Info("=\n")
+		text_i_o.GoCommand("=\n")
 		log1.J.Infow("ok")
 
 		return true
@@ -154,7 +154,7 @@ func (k *Kernel) ReadCommand(command string, text_i_o *text_i_o.TextIO, log1 *lo
 			}
 			k.Position.Board.GetCoordinate().ForeachLikeText(setPoint, doNewline)
 			sb.WriteString("\n. '''\n")
-			log1.C.Info(sb.String())
+			text_i_o.GoCommand(sb.String())
 		}
 		// コンピューター向けの出力
 		{
