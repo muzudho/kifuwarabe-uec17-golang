@@ -13,6 +13,9 @@ import (
 	// Section 1.1.1
 	logger "github.com/muzudho/kifuwarabe-uec17-golang/kernel/part_1_facility/chapter_1_i_o/section_1/logger"
 
+	// Section 1.1.2
+	text_i_o "github.com/muzudho/kifuwarabe-uec17-golang/kernel/part_1_facility/chapter_1_i_o/section_2/text_i_o"
+
 	// Level 2.1
 	komi_float "github.com/muzudho/kifuwarabe-uec17-golang/kernel/level_2_conceptual/sublevel_1/komi_float"
 	moves_num "github.com/muzudho/kifuwarabe-uec17-golang/kernel/level_2_conceptual/sublevel_1/moves_num"
@@ -78,6 +81,12 @@ func main() {
 	}
 
 	// ========================================
+	// 思考エンジンの準備　＞　テキストＩＯ
+	// ========================================
+
+	var text_i_o = text_i_o.NewTextIO(log1)
+
+	// ========================================
 	// コマンドラインの第一引数で処理を振り分ける
 	// ========================================
 
@@ -101,7 +110,7 @@ func main() {
 		// [O12o__11o_4o0] 棋譜の初期化に利用
 		var onUnknownTurn = func() stone.Stone {
 			var errMsg = fmt.Sprintf("? unexpected play_first:%s", engineConfig.GetPlayFirst())
-			log1.C.Info(errMsg)
+			text_i_o.GoCommand(errMsg)
 			log1.J.Infow("error", "play_first", engineConfig.GetPlayFirst())
 			panic(errMsg)
 		}
@@ -125,7 +134,7 @@ func main() {
 			log1.J.Infow("input", "command", command) // コンピューター向けの出力
 
 			// [O11o_3o0]
-			var isHandled = kernel1.ReadCommand(command, log1)
+			var isHandled = kernel1.ReadCommand(command, text_i_o, log1)
 			if isHandled {
 				continue
 			}

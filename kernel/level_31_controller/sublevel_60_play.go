@@ -6,8 +6,11 @@ import (
 	"math"
 	"strings"
 
-	// Level 1
+	// Section 1.1.1
 	logger "github.com/muzudho/kifuwarabe-uec17-golang/kernel/part_1_facility/chapter_1_i_o/section_1/logger"
+
+	// Section 1.1.2
+	text_i_o "github.com/muzudho/kifuwarabe-uec17-golang/kernel/part_1_facility/chapter_1_i_o/section_2/text_i_o"
 
 	// Level 2.1
 	point "github.com/muzudho/kifuwarabe-uec17-golang/kernel/level_2_conceptual/sublevel_1/point"
@@ -27,13 +30,13 @@ import (
 // * `command` - Example: `play black A19`
 // ........................---- ----- ---
 // ........................0    1     2
-func (k *Kernel) DoPlay(command string, logg *logger.Logger) {
+func (k *Kernel) DoPlay(command string, text_i_o *text_i_o.TextIO, log1 *logger.Logger) {
 	var tokens = strings.Split(command, " ")
 	var stoneName = tokens[1]
 
 	var getDefaultStone = func() (bool, stone.Stone) {
-		logg.C.Infof("? unexpected stone:%s\n", stoneName)
-		logg.J.Infow("error", "stone", stoneName)
+		log1.C.Infof("? unexpected stone:%s\n", stoneName)
+		log1.J.Infow("error", "stone", stoneName)
 		return false, stone.Stone_Space
 	}
 
@@ -48,33 +51,33 @@ func (k *Kernel) DoPlay(command string, logg *logger.Logger) {
 
 	// [O22o1o2o0] 石（または枠）の上に石を置こうとした
 	var onMasonry = func() bool {
-		logg.C.Infof("? masonry my_stone:%s placePlay:%s\n", stone, k.Position.Board.Coordinate.GetGtpMoveFromPoint(placePlay))
-		logg.J.Infow("error masonry", "my_stone", stone, "placePlay", k.Position.Board.Coordinate.GetGtpMoveFromPoint(placePlay))
+		log1.C.Infof("? masonry my_stone:%s placePlay:%s\n", stone, k.Position.Board.Coordinate.GetGtpMoveFromPoint(placePlay))
+		log1.J.Infow("error masonry", "my_stone", stone, "placePlay", k.Position.Board.Coordinate.GetGtpMoveFromPoint(placePlay))
 		return false
 	}
 
 	// [O22o3o1o0] 相手の眼に石を置こうとした
 	var onOpponentEye = func() bool {
-		logg.C.Infof("? opponent_eye my_stone:%s placePlay:%s\n", stone, k.Position.Board.Coordinate.GetGtpMoveFromPoint(placePlay))
-		logg.J.Infow("error opponent_eye", "my_stone", stone, "placePlay", k.Position.Board.Coordinate.GetGtpMoveFromPoint(placePlay))
+		log1.C.Infof("? opponent_eye my_stone:%s placePlay:%s\n", stone, k.Position.Board.Coordinate.GetGtpMoveFromPoint(placePlay))
+		log1.J.Infow("error opponent_eye", "my_stone", stone, "placePlay", k.Position.Board.Coordinate.GetGtpMoveFromPoint(placePlay))
 		return false
 	}
 
 	// [O22o4o1o0] 自分の眼に石を置こうとした
 	var onForbiddenMyEye = func() bool {
-		logg.C.Infof("? my_eye my_stone:%s placePlay:%s\n", stone, k.Position.Board.Coordinate.GetGtpMoveFromPoint(placePlay))
-		logg.J.Infow("error my_eye", "my_stone", stone, "placePlay", k.Position.Board.Coordinate.GetGtpMoveFromPoint(placePlay))
+		log1.C.Infof("? my_eye my_stone:%s placePlay:%s\n", stone, k.Position.Board.Coordinate.GetGtpMoveFromPoint(placePlay))
+		log1.J.Infow("error my_eye", "my_stone", stone, "placePlay", k.Position.Board.Coordinate.GetGtpMoveFromPoint(placePlay))
 		return false
 	}
 
 	// [O22o7o2o0] コウに石を置こうとした
 	var onKo = func() bool {
-		logg.C.Infof("? ko my_stone:%s placePlay:%s\n", stone, k.Position.Board.Coordinate.GetGtpMoveFromPoint(placePlay))
-		logg.J.Infow("error ko", "my_stone", stone, "placePlay", k.Position.Board.Coordinate.GetGtpMoveFromPoint(placePlay))
+		log1.C.Infof("? ko my_stone:%s placePlay:%s\n", stone, k.Position.Board.Coordinate.GetGtpMoveFromPoint(placePlay))
+		log1.J.Infow("error ko", "my_stone", stone, "placePlay", k.Position.Board.Coordinate.GetGtpMoveFromPoint(placePlay))
 		return false
 	}
 
-	var isOk = k.Play(stone, placePlay, logg,
+	var isOk = k.Play(stone, placePlay, log1,
 		// [O22o1o2o0] ,onMasonry
 		onMasonry,
 		// [O22o3o1o0] ,onOpponentEye
@@ -85,8 +88,8 @@ func (k *Kernel) DoPlay(command string, logg *logger.Logger) {
 		onKo)
 
 	if isOk {
-		logg.C.Info("=\n")
-		logg.J.Infow("ok")
+		text_i_o.GoCommand("=\n")
+		log1.J.Infow("ok")
 	}
 }
 

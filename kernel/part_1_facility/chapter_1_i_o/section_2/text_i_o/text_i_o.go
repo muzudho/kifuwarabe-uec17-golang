@@ -6,11 +6,12 @@ import logger "github.com/muzudho/kifuwarabe-uec17-golang/kernel/part_1_facility
 // TextIO - テキスト入出力
 type TextIO struct {
 	// ロガー
-	log1 logger.Logger
+	log1 *logger.Logger
 }
 
-func NewTextIO() *TextIO {
+func NewTextIO(log1 *logger.Logger) *TextIO {
 	var t = new(TextIO)
+	t.log1 = log1
 	return t
 }
 
