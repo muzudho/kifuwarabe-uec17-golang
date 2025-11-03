@@ -9,19 +9,19 @@ import (
 	"strings"
 
 	// Level 2.1
-	point "github.com/muzudho/kifuwarabe-uec17-golang/kernel/level_2_conceptual/sublevel_1/point"
+	point "github.com/muzudho/kifuwarabe-uec17-golang-from-uec14/kernel/level_2_conceptual/sublevel_1/point"
 
 	// Level 3.1
-	stone "github.com/muzudho/kifuwarabe-uec17-golang/kernel/level_3_physical/sublevel_1/stone"
+	stone "github.com/muzudho/kifuwarabe-uec17-golang-from-uec14/kernel/level_3_physical/sublevel_1/stone"
 
 	// Level 4.1
-	rentype "github.com/muzudho/kifuwarabe-uec17-golang/kernel/level_4_game_rule/sublevel_1/ren"
+	rentype "github.com/muzudho/kifuwarabe-uec17-golang-from-uec14/kernel/level_4_game_rule/sublevel_1/ren"
 
 	// Level 6.3
-	ren_db "github.com/muzudho/kifuwarabe-uec17-golang/kernel/level_6_database/sublevel_3/ren_db"
+	ren_db "github.com/muzudho/kifuwarabe-uec17-golang-from-uec14/kernel/level_6_database/sublevel_3/ren_db"
 
 	// Level 7.1
-	liberty_search_algorithm "github.com/muzudho/kifuwarabe-uec17-golang/kernel/level_7_misc/sublevel_1/liberty_search_algorithm"
+	liberty_search_algorithm "github.com/muzudho/kifuwarabe-uec17-golang-from-uec14/kernel/level_7_misc/sublevel_1/liberty_search_algorithm"
 )
 
 // LoadRenDb - [O12o__11o__10o5o__10o_10o0] 連データベースの外部ファイル読取

@@ -8,14 +8,14 @@ import (
 	"strings"
 
 	// Section 1.1.1
-	logger "github.com/muzudho/kifuwarabe-uec17-golang/kernel/part_1_facility/chapter_1_i_o/section_1/logger"
-	text_i_o "github.com/muzudho/kifuwarabe-uec17-golang/kernel/part_1_facility/chapter_1_i_o/section_2/text_i_o"
+	logger "github.com/muzudho/kifuwarabe-uec17-golang-from-uec14/kernel/part_1_facility/chapter_1_i_o/section_1/logger"
+	text_i_o "github.com/muzudho/kifuwarabe-uec17-golang-from-uec14/kernel/part_1_facility/chapter_1_i_o/section_2/text_i_o"
 
 	// Level 1
-	point "github.com/muzudho/kifuwarabe-uec17-golang/kernel/level_2_conceptual/sublevel_1/point"
+	point "github.com/muzudho/kifuwarabe-uec17-golang-from-uec14/kernel/level_2_conceptual/sublevel_1/point"
 
 	// Level 2
-	stone "github.com/muzudho/kifuwarabe-uec17-golang/kernel/level_3_physical/sublevel_1/stone"
+	stone "github.com/muzudho/kifuwarabe-uec17-golang-from-uec14/kernel/level_3_physical/sublevel_1/stone"
 )
 
 // DoSetBoard - 盤面を設定する

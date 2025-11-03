@@ -8,26 +8,26 @@ import (
 	"os"
 	"strings"
 
-	dbg "github.com/muzudho/kifuwarabe-uec17-golang/debugger"
+	dbg "github.com/muzudho/kifuwarabe-uec17-golang-from-uec14/debugger"
 
 	// Section 1.1.1
-	logger "github.com/muzudho/kifuwarabe-uec17-golang/kernel/part_1_facility/chapter_1_i_o/section_1/logger"
+	logger "github.com/muzudho/kifuwarabe-uec17-golang-from-uec14/kernel/part_1_facility/chapter_1_i_o/section_1/logger"
 
 	// Section 1.1.2
-	text_i_o "github.com/muzudho/kifuwarabe-uec17-golang/kernel/part_1_facility/chapter_1_i_o/section_2/text_i_o"
+	text_i_o "github.com/muzudho/kifuwarabe-uec17-golang-from-uec14/kernel/part_1_facility/chapter_1_i_o/section_2/text_i_o"
 
 	// Level 2.1
-	komi_float "github.com/muzudho/kifuwarabe-uec17-golang/kernel/level_2_conceptual/sublevel_1/komi_float"
-	moves_num "github.com/muzudho/kifuwarabe-uec17-golang/kernel/level_2_conceptual/sublevel_1/moves_num"
+	komi_float "github.com/muzudho/kifuwarabe-uec17-golang-from-uec14/kernel/level_2_conceptual/sublevel_1/komi_float"
+	moves_num "github.com/muzudho/kifuwarabe-uec17-golang-from-uec14/kernel/level_2_conceptual/sublevel_1/moves_num"
 
 	// Level 3.1
-	stone "github.com/muzudho/kifuwarabe-uec17-golang/kernel/level_3_physical/sublevel_1/stone"
+	stone "github.com/muzudho/kifuwarabe-uec17-golang-from-uec14/kernel/level_3_physical/sublevel_1/stone"
 
 	// Level 4.1
-	game_rule_settings "github.com/muzudho/kifuwarabe-uec17-golang/kernel/level_4_game_rule/sublevel_1/game_rule_settings"
+	game_rule_settings "github.com/muzudho/kifuwarabe-uec17-golang-from-uec14/kernel/level_4_game_rule/sublevel_1/game_rule_settings"
 
 	// Level 31
-	kernel_core "github.com/muzudho/kifuwarabe-uec17-golang/kernel/level_31_controller"
+	kernel_core "github.com/muzudho/kifuwarabe-uec17-golang-from-uec14/kernel/level_31_controller"
 )
 
 // [O11o_1o0] グローバル変数として、バーチャルIOを１つ新規作成

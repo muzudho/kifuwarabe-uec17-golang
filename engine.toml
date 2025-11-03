@@ -51,9 +51,9 @@ PlayFirst = "black"
 [Paths]
 
 # PlainTextLog - コンソールのより詳細なログ
-PlainTextLog = "kifuwarabe-uec17-golang.log"
+PlainTextLog = "kifuwarabe-uec17-golang-from-uec14.log"
 
 # JsonLog - コンピューター向けのログ
-JsonLog = "kifuwarabe-uec17-golang-json.log"
+JsonLog = "kifuwarabe-uec17-golang-from-uec14-json.log"
 
 # EOF [O11o__10o_2o0]

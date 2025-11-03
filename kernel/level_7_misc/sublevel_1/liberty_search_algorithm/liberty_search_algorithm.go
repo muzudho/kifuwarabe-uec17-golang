@@ -2,23 +2,23 @@ package liberty_search_algorithm
 
 import (
 	// Level 2.1
-	point "github.com/muzudho/kifuwarabe-uec17-golang/kernel/level_2_conceptual/sublevel_1/point"
+	point "github.com/muzudho/kifuwarabe-uec17-golang-from-uec14/kernel/level_2_conceptual/sublevel_1/point"
 
 	// Level 2.2
-	board_coordinate "github.com/muzudho/kifuwarabe-uec17-golang/kernel/level_2_conceptual/sublevel_2/board_coordinate"
+	board_coordinate "github.com/muzudho/kifuwarabe-uec17-golang-from-uec14/kernel/level_2_conceptual/sublevel_2/board_coordinate"
 
 	// Level 3.1
-	stone "github.com/muzudho/kifuwarabe-uec17-golang/kernel/level_3_physical/sublevel_1/stone"
+	stone "github.com/muzudho/kifuwarabe-uec17-golang-from-uec14/kernel/level_3_physical/sublevel_1/stone"
 
 	// Level 4.1
-	check_board "github.com/muzudho/kifuwarabe-uec17-golang/kernel/level_4_game_rule/sublevel_1/check_board"
-	rentype "github.com/muzudho/kifuwarabe-uec17-golang/kernel/level_4_game_rule/sublevel_1/ren"
+	check_board "github.com/muzudho/kifuwarabe-uec17-golang-from-uec14/kernel/level_4_game_rule/sublevel_1/check_board"
+	rentype "github.com/muzudho/kifuwarabe-uec17-golang-from-uec14/kernel/level_4_game_rule/sublevel_1/ren"
 
 	// Level 4.2
-	board "github.com/muzudho/kifuwarabe-uec17-golang/kernel/level_4_game_rule/sublevel_2/board"
+	board "github.com/muzudho/kifuwarabe-uec17-golang-from-uec14/kernel/level_4_game_rule/sublevel_2/board"
 
 	// Level 5.1
-	mark "github.com/muzudho/kifuwarabe-uec17-golang/kernel/level_5_game_technic/sublevel_1/mark"
+	mark "github.com/muzudho/kifuwarabe-uec17-golang-from-uec14/kernel/level_5_game_technic/sublevel_1/mark"
 )
 
 // LibertySearchAlgorithm - 呼吸点探索アルゴリズム
