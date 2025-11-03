@@ -3,10 +3,10 @@ package liberty_search_algorithm
 import (
 	// Entities
 	color "github.com/muzudho/kifuwarabe-uec17-golang-from-uec14/kernel/implementations/part_1_entities/chapter_1_go_conceptual/section_1/color"
+	"github.com/muzudho/kifuwarabe-uec17-golang-from-uec14/kernel/implementations/part_1_entities/chapter_1_go_conceptual/section_1/direction_4"
 	point "github.com/muzudho/kifuwarabe-uec17-golang-from-uec14/kernel/implementations/part_1_entities/chapter_1_go_conceptual/section_1/point"
 
 	// Level 2.2
-	board_coordinate "github.com/muzudho/kifuwarabe-uec17-golang-from-uec14/kernel/level_2_conceptual/sublevel_2/board_coordinate"
 
 	// Level 4.1
 	check_board "github.com/muzudho/kifuwarabe-uec17-golang-from-uec14/kernel/level_4_game_rule/sublevel_1/check_board"
@@ -80,7 +80,7 @@ func (ls *LibertySearchAlgorithm) searchStoneRenRecursive(here point.Point) {
 	ls.foundRen.AddLocation(here)
 
 	// 隣接する交点毎に
-	var eachAdjacent = func(dir board_coordinate.Cell_4Directions, p point.Point) {
+	var eachAdjacent = func(dir direction_4.Directions4, p point.Point) {
 
 		var color1 = ls.board.GetStoneAt(p) // 石の色
 		switch color1 {
@@ -121,7 +121,7 @@ func (ls *LibertySearchAlgorithm) searchSpaceRen(here point.Point) {
 	ls.checkBoard.Overwrite(here, mark.Mark_BitStone)
 	ls.foundRen.AddLocation(here)
 
-	var eachAdjacent = func(dir board_coordinate.Cell_4Directions, p point.Point) {
+	var eachAdjacent = func(dir direction_4.Directions4, p point.Point) {
 		// 探索済みならスキップ
 		if ls.checkBoard.Contains(p, mark.Mark_BitStone) {
 			return

@@ -5,6 +5,7 @@ import (
 	"strconv"
 
 	// Level 1
+	"github.com/muzudho/kifuwarabe-uec17-golang-from-uec14/kernel/implementations/part_1_entities/chapter_1_go_conceptual/section_1/direction_4"
 	point "github.com/muzudho/kifuwarabe-uec17-golang-from-uec14/kernel/implementations/part_1_entities/chapter_1_go_conceptual/section_1/point"
 )
 
@@ -14,17 +15,6 @@ const oneSideWallThickness = 1
 // 両側の枠の厚み。南北、または東西
 const BothSidesWallThickness = 2
 
-// Cell_4Directions - 東、北、西、南を指す配列のインデックスに対応
-type Cell_4Directions int
-
-// 東、北、西、南を指す配列のインデックスに対応
-const (
-	Cell_East Cell_4Directions = iota
-	Cell_North
-	Cell_West
-	Cell_South
-)
-
 // BoardCoordinate - 盤座標
 type BoardCoordinate struct {
 	// 枠付きの盤の水平一辺の交点の要素数
@@ -32,8 +22,8 @@ type BoardCoordinate struct {
 	// 枠付きの盤の垂直一辺の交点の要素数
 	MemoryHeight int
 
-	// ４方向（東、北、西、南）への相対番地。2015年講習会サンプル、GoGo とは順序が違います
-	Cell4Directions [4]point.Point
+	// Directions4Array - ４方向（東、西、南、北）の番地。水平方向、垂直方向の順で並べた。Directions4型の順番に対応
+	Directions4Array [4]point.Point
 }
 
 // GetMemoryWidth - 枠付きの盤の水平一辺の交点数
@@ -68,49 +58,49 @@ func (bc *BoardCoordinate) GetBoardArea() int {
 	return bc.GetWidth() * bc.GetHeight()
 }
 
-// GetRelativePointOf - ４方向（東、北、西、南）の先の番地
-func (bc *BoardCoordinate) GetRelativePointOf(dir4 Cell_4Directions) point.Point {
-	return bc.Cell4Directions[dir4]
+// GetRelativePointOf - ４方向の先の番地
+func (bc *BoardCoordinate) GetRelativePointOf(dir4 direction_4.Directions4) point.Point {
+	return bc.Directions4Array[dir4]
 }
 
 // GetEastOf - 東
 func (bc *BoardCoordinate) GetEastOf(point point.Point) point.Point {
-	return point + bc.Cell4Directions[Cell_East]
+	return point + bc.Directions4Array[direction_4.East]
 }
 
 // GetNorthEastOf - 北東
 func (bc *BoardCoordinate) GetNorthEastOf(point point.Point) point.Point {
-	return point + bc.Cell4Directions[Cell_North] + bc.Cell4Directions[Cell_East]
+	return point + bc.Directions4Array[direction_4.North] + bc.Directions4Array[direction_4.East]
 }
 
 // GetNorthOf - 北
 func (bc *BoardCoordinate) GetNorthOf(point point.Point) point.Point {
-	return point + bc.Cell4Directions[Cell_North]
+	return point + bc.Directions4Array[direction_4.North]
 }
 
 // GetNorthWestOf - 北西
 func (bc *BoardCoordinate) GetNorthWestOf(point point.Point) point.Point {
-	return point + bc.Cell4Directions[Cell_North] + bc.Cell4Directions[Cell_West]
+	return point + bc.Directions4Array[direction_4.North] + bc.Directions4Array[direction_4.West]
 }
 
 // GetWestOf - 西
 func (bc *BoardCoordinate) GetWestOf(point point.Point) point.Point {
-	return point + bc.Cell4Directions[Cell_West]
+	return point + bc.Directions4Array[direction_4.West]
 }
 
 // GetSouthWestOf - 南西
 func (bc *BoardCoordinate) GetSouthWestOf(point point.Point) point.Point {
-	return point + bc.Cell4Directions[Cell_South] + bc.Cell4Directions[Cell_West]
+	return point + bc.Directions4Array[direction_4.South] + bc.Directions4Array[direction_4.West]
 }
 
 // GetSouthOf - 南
 func (bc *BoardCoordinate) GetSouthOf(point point.Point) point.Point {
-	return point + bc.Cell4Directions[Cell_South]
+	return point + bc.Directions4Array[direction_4.South]
 }
 
 // GetSouthEastOf - 南東
 func (bc *BoardCoordinate) GetSouthEastOf(point point.Point) point.Point {
-	return point + bc.Cell4Directions[Cell_South] + bc.Cell4Directions[Cell_East]
+	return point + bc.Directions4Array[direction_4.South] + bc.Directions4Array[direction_4.East]
 }
 
 // GetPointFromXy - x,y 形式の座標を、 point （配列のインデックス）へ変換します。

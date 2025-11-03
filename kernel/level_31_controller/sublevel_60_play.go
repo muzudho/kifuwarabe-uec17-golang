@@ -9,6 +9,7 @@ import (
 
 	// Entities
 	color "github.com/muzudho/kifuwarabe-uec17-golang-from-uec14/kernel/implementations/part_1_entities/chapter_1_go_conceptual/section_1/color"
+	"github.com/muzudho/kifuwarabe-uec17-golang-from-uec14/kernel/implementations/part_1_entities/chapter_1_go_conceptual/section_1/direction_4"
 	point "github.com/muzudho/kifuwarabe-uec17-golang-from-uec14/kernel/implementations/part_1_entities/chapter_1_go_conceptual/section_1/point"
 
 	// Section 1.1.1
@@ -16,7 +17,6 @@ import (
 	i_text_io "github.com/muzudho/kifuwarabe-uec17-golang-from-uec14/kernel/interfaces/part_1_facility/chapter_1_io/section_1/i_text_io"
 
 	// Level 2.2
-	board_coordinate "github.com/muzudho/kifuwarabe-uec17-golang-from-uec14/kernel/level_2_conceptual/sublevel_2/board_coordinate"
 
 	// Level 4.1
 	rentype "github.com/muzudho/kifuwarabe-uec17-golang-from-uec14/kernel/level_4_game_rule/sublevel_1/ren"
@@ -207,12 +207,12 @@ func (kernel1 *Kernel) GetRenToCapture(placePlay point.Point) (bool, [4]*rentype
 	var rensToRemove [4]*rentype.Ren
 	var renIds = [4]point.Point{math.MaxInt, math.MaxInt, math.MaxInt, math.MaxInt}
 
-	var setAdjacentPoint = func(dir board_coordinate.Cell_4Directions, adjacentP point.Point) {
+	var setAdjacentPoint = func(dir direction_4.Directions4, adjacentP point.Point) {
 		var adjacentR, isFound = kernel1.GetLiberty(adjacentP)
 		if isFound {
 			// 同じ連を数え上げるのを防止する
 			var renId = adjacentR.GetMinimumLocation()
-			for i := board_coordinate.Cell_4Directions(0); i < dir; i++ {
+			for i := direction_4.Directions4(0); i < dir; i++ {
 				if renIds[i] == renId { // Idが既存
 					return
 				}

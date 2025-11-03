@@ -3,6 +3,7 @@ package board
 import (
 	// Entities
 	color "github.com/muzudho/kifuwarabe-uec17-golang-from-uec14/kernel/implementations/part_1_entities/chapter_1_go_conceptual/section_1/color"
+	"github.com/muzudho/kifuwarabe-uec17-golang-from-uec14/kernel/implementations/part_1_entities/chapter_1_go_conceptual/section_1/direction_4"
 	point "github.com/muzudho/kifuwarabe-uec17-golang-from-uec14/kernel/implementations/part_1_entities/chapter_1_go_conceptual/section_1/point"
 
 	// Level 2.2
@@ -40,8 +41,8 @@ func NewBoard(gameRuleSettings game_rule_settings.GameRuleSettings, boardWidht i
 	b.Coordinate = board_coordinate.BoardCoordinate{
 		MemoryWidth:  memoryBoardWidth,
 		MemoryHeight: memoryBoardHeight,
-		// ４方向（東、北、西、南）の番地への相対インデックス
-		Cell4Directions: [4]point.Point{
+		// ４方向の番地への相対インデックス
+		Directions4Array: [4]point.Point{
 			1,
 			point.Point(-memoryBoardWidth),
 			-1,
@@ -96,8 +97,8 @@ func (b *Board) resize(width int, height int) {
 	b.Coordinate.MemoryHeight = height + board_coordinate.BothSidesWallThickness
 	b.Cells = make([]color.Color, b.Coordinate.GetMemoryArea())
 
-	// ４方向（東、北、西、南）の番地への相対インデックス
-	b.Coordinate.Cell4Directions = [4]point.Point{1, point.Point(-b.Coordinate.GetMemoryWidth()), -1, point.Point(b.Coordinate.GetMemoryWidth())}
+	// ４方向の番地への相対インデックス
+	b.Coordinate.Directions4Array = [4]point.Point{1, -1, point.Point(b.Coordinate.GetMemoryWidth()), point.Point(-b.Coordinate.GetMemoryWidth())}
 }
 
 // Init - 盤面初期化
@@ -145,10 +146,9 @@ func (b *Board) Init(width int, height int) {
 }
 
 // ForeachNeumannNeighborhood - [O13o__10o0] 隣接する４方向の定義
-func (b *Board) ForeachNeumannNeighborhood(here point.Point, setAdjacent func(board_coordinate.Cell_4Directions, point.Point)) {
-	// 東、北、西、南
-	for dir := board_coordinate.Cell_4Directions(0); dir < 4; dir++ {
-		var p = here + b.Coordinate.Cell4Directions[dir] // 隣接する交点
+func (b *Board) ForeachNeumannNeighborhood(here point.Point, setAdjacent func(direction_4.Directions4, point.Point)) {
+	for dir := direction_4.Directions4(0); dir < 4; dir++ {
+		var p = here + b.Coordinate.Directions4Array[dir] // 隣接する交点
 
 		// 範囲外チェック
 		if p < 0 || b.Coordinate.GetMemoryArea() <= int(p) {
