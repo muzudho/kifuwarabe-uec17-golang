@@ -9,4 +9,4 @@ go build
 cd ./bin
 echo go build したぜ（＾～＾）！
 
-call copy_file_kifuwarabe.bat
+call move_file_kifuwarabe.bat

@@ -17,8 +17,8 @@ import (
 
 // Board - 盤
 type Board struct {
-	// gameRuleSettings - 対局ルール設定
-	gameRuleSettings game_rule_settings.GameRuleSettings
+	// GameRuleSettings - 対局ルール設定
+	GameRuleSettings game_rule_settings.GameRuleSettings
 
 	// Coordinate - 盤座標
 	Coordinate board_coordinate.BoardCoordinate
@@ -34,7 +34,7 @@ func NewBoard(gameRuleSettings game_rule_settings.GameRuleSettings, boardWidht i
 	var b = new(Board)
 
 	// 設定ファイルから読込むので動的設定
-	b.gameRuleSettings = gameRuleSettings
+	b.GameRuleSettings = gameRuleSettings
 
 	// 枠の分、２つ増える
 	var memoryBoardWidth = boardWidht + 2
@@ -60,12 +60,12 @@ func NewBoard(gameRuleSettings game_rule_settings.GameRuleSettings, boardWidht i
 
 // GetGameRule - ゲームルール取得
 func (b *Board) GetGameRule() *game_rule_settings.GameRuleSettings {
-	return &b.gameRuleSettings
+	return &b.GameRuleSettings
 }
 
 // SetGameRule - ゲームルール設定
 func (b *Board) SetGameRule(gameRuleSettings *game_rule_settings.GameRuleSettings) {
-	b.gameRuleSettings = *gameRuleSettings
+	b.GameRuleSettings = *gameRuleSettings
 }
 
 // GetCoordinate - 盤座標取得

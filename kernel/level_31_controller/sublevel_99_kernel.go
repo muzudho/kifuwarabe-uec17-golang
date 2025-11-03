@@ -14,6 +14,7 @@ import (
 
 	// Level 2.1
 	geta "github.com/muzudho/kifuwarabe-uec17-golang/kernel/level_2_conceptual/sublevel_1/geta"
+	"github.com/muzudho/kifuwarabe-uec17-golang/kernel/level_2_conceptual/sublevel_1/komi_float"
 	moves_num "github.com/muzudho/kifuwarabe-uec17-golang/kernel/level_2_conceptual/sublevel_1/moves_num"
 	point "github.com/muzudho/kifuwarabe-uec17-golang/kernel/level_2_conceptual/sublevel_1/point"
 
@@ -82,6 +83,16 @@ func (k *Kernel) ReadCommand(command string, text_i_o *text_i_o.TextIO, log1 *lo
 	// GTP 対応　＞　大会参加向け
 	// ========================================
 
+	// 使用可能なコマンドのリスト
+	// Example: `list_commands`
+	case "list_commands":
+		items := []string{"name", "version", "protocol_version", "list_command", "quit", "komi"}
+		// for rangeでループ。各行出力
+		for _, item := range items {
+			text_i_o.GoCommand(fmt.Sprintf("%s\n", item))
+		}
+		return true
+
 	// 思考エンジンの名前
 	// Example: `name`
 	case "name":
@@ -100,14 +111,21 @@ func (k *Kernel) ReadCommand(command string, text_i_o *text_i_o.TextIO, log1 *lo
 		text_i_o.GoCommand("= 2\n")
 		return true
 
-	// 使用可能なコマンドのリスト
-	// Example: `list_commands`
-	case "list_commands":
-		items := []string{"name", "version", "protocol_version", "list_command", "quit"}
-		// for rangeでループ。各行出力
-		for _, item := range items {
-			text_i_o.GoCommand(fmt.Sprintf("%s\n", item))
+	// コミの設定
+	// Example: `komi 6.5`
+	case "komi":
+		komi, err := strconv.ParseFloat(tokens[1], 64)
+
+		if err != nil {
+			text_i_o.GoCommand(fmt.Sprintf("? unexpected komi:%s\n", tokens[1]))
+			log1.J.Infow("error", "komi", tokens[1])
+			return true
 		}
+
+		k.Position.Board.GameRuleSettings.Komi = komi_float.KomiFloat(komi)
+		text_i_o.GoCommand("=\n")
+		log1.J.Infow("ok")
+
 		return true
 
 	// 盤サイズの設定

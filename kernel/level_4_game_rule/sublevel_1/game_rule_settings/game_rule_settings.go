@@ -9,7 +9,7 @@ import (
 // GameRuleSettings - 対局ルール設定
 type GameRuleSettings struct {
 	// コミ。 6.5 といった数字を入れるだけ。実行速度優先で 64bitに
-	komi komi_float.KomiFloat
+	Komi komi_float.KomiFloat
 
 	// 上限手数
 	maxMovesNum moves_num.MovesNum
@@ -19,7 +19,7 @@ type GameRuleSettings struct {
 func NewGameRuleSettings(komi komi_float.KomiFloat, maxMovesNum moves_num.MovesNum) *GameRuleSettings {
 	var gr = new(GameRuleSettings)
 
-	gr.komi = komi
+	gr.Komi = komi
 	gr.maxMovesNum = maxMovesNum
 
 	return gr
@@ -27,7 +27,7 @@ func NewGameRuleSettings(komi komi_float.KomiFloat, maxMovesNum moves_num.MovesN
 
 // GetKomi - コミ取得
 func (gr *GameRuleSettings) GetKomi() komi_float.KomiFloat {
-	return gr.komi
+	return gr.Komi
 }
 
 // GetMaxPositionNumber - 上限手数
