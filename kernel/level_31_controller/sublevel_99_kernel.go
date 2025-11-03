@@ -82,9 +82,37 @@ func (k *Kernel) ReadCommand(command string, text_i_o *text_i_o.TextIO, log1 *lo
 	// GTP 対応　＞　大会参加向け
 	// ========================================
 
+	// 思考エンジンの名前
+	// Example: `name`
+	case "name":
+		text_i_o.GoCommand("= Kifuwarabe UEC17\n")
+		return true
+
+	// 思考エンジンのバージョン
+	// Example: `version`
+	case "version":
+		text_i_o.GoCommand("= 0.0.1\n")
+		return true
+
+	// プロトコルのバージョン
+	// Example: `protocol_version`
+	case "protocol_version":
+		text_i_o.GoCommand("= 2\n")
+		return true
+
+	// 使用可能なコマンドのリスト
+	// Example: `list_commands`
+	case "list_commands":
+		items := []string{"name", "version", "protocol_version", "list_command", "quit"}
+		// for rangeでループ。各行出力
+		for _, item := range items {
+			text_i_o.GoCommand(fmt.Sprintf("%s\n", item))
+		}
+		return true
+
 	// 盤サイズの設定
 	// Example: `boardsize 19`
-	case "boardsize": // [O15o__11o0]
+	case "boardsize":
 		var sideLength, err = strconv.Atoi(tokens[1])
 
 		if err != nil {
