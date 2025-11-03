@@ -1,10 +1,9 @@
 package text_io
 
-// Section 1.1.1
 import (
 	"fmt"
 
-	logger "github.com/muzudho/kifuwarabe-uec17-golang-from-uec14/kernel/implementations/part_7_presenter/chapter_1_i_o/section_1/logger"
+	logger "github.com/muzudho/kifuwarabe-uec17-golang-from-uec14/kernel/implementations/part_7_presenter/chapter_1_io/section_1/logger"
 )
 
 // TextIO - テキスト入出力

@@ -11,11 +11,11 @@ import (
 	dbg "github.com/muzudho/kifuwarabe-uec17-golang-from-uec14/debugger"
 
 	// Implementation
-	logger "github.com/muzudho/kifuwarabe-uec17-golang-from-uec14/kernel/implementations/part_7_presenter/chapter_1_i_o/section_1/logger"
-	text_i_o "github.com/muzudho/kifuwarabe-uec17-golang-from-uec14/kernel/implementations/part_7_presenter/chapter_1_i_o/section_2/text_i_o"
+	logger "github.com/muzudho/kifuwarabe-uec17-golang-from-uec14/kernel/implementations/part_7_presenter/chapter_1_io/section_1/logger"
+	text_io "github.com/muzudho/kifuwarabe-uec17-golang-from-uec14/kernel/implementations/part_7_presenter/chapter_1_io/section_2/text_io"
 
 	// Interfaces
-	i_text_i_o "github.com/muzudho/kifuwarabe-uec17-golang-from-uec14/kernel/interfaces/part_1_facility/chapter_1_i_o/section_1/i_text_i_o"
+	i_text_io "github.com/muzudho/kifuwarabe-uec17-golang-from-uec14/kernel/interfaces/part_1_facility/chapter_1_io/section_1/i_text_io"
 
 	// Section 1.1.2
 
@@ -87,7 +87,7 @@ func main() {
 	// 思考エンジンの準備　＞　テキストＩＯ
 	// ========================================
 
-	var text_i_o1 i_text_i_o.ITextIO = text_i_o.NewTextIO(log1)
+	var text_i_o1 i_text_io.ITextIO = text_io.NewTextIO(log1)
 
 	// ========================================
 	// コマンドラインの第一引数で処理を振り分ける
@@ -134,7 +134,7 @@ func main() {
 			var command = virtualIo.ScannerText()
 
 			// FIXME: 大会の邪魔になるのでは？
-			//text_i_o.GoCommand(fmt.Sprintf("# %s", command))             // 人間向けの出力
+			//text_io.GoCommand(fmt.Sprintf("# %s", command))             // 人間向けの出力
 
 			log1.J.Infow("input", "command", command) // コンピューター向けの出力
 
