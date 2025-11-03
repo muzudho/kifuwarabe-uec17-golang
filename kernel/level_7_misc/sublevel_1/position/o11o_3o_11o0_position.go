@@ -1,9 +1,11 @@
 package position
 
 import (
+	// Entities
+	game_rule_settings "github.com/muzudho/kifuwarabe-uec17-golang-from-uec14/kernel/implementations/part_1_entities/chapter_2_rule_settings/section_1/game_rule_settings"
+
 	// Level 4.1
 	check_board "github.com/muzudho/kifuwarabe-uec17-golang-from-uec14/kernel/level_4_game_rule/sublevel_1/check_board"
-	game_rule_settings "github.com/muzudho/kifuwarabe-uec17-golang-from-uec14/kernel/level_4_game_rule/sublevel_1/game_rule_settings"
 
 	// Level 4.2
 	board "github.com/muzudho/kifuwarabe-uec17-golang-from-uec14/kernel/level_4_game_rule/sublevel_2/board"
