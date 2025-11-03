@@ -24,7 +24,7 @@ import (
 // * `command` - Example: `board_set file data/board1.txt`
 // ........................--------- ---- ---------------
 // ........................0         1    2
-func (k *Kernel) DoSetBoard(command string, text_io i_text_io.ITextIO, logg *logger.Logger) {
+func (kernel1 *Kernel) DoSetBoard(command string, text_io i_text_io.ITextIO, logg *logger.Logger) {
 	var tokens = strings.Split(command, " ")
 
 	if tokens[1] == "file" {
@@ -41,7 +41,7 @@ func (k *Kernel) DoSetBoard(command string, text_io i_text_io.ITextIO, logg *log
 			return false, stone.Stone_Space
 		}
 
-		var size = k.Position.Board.Coordinate.GetMemoryArea()
+		var size = kernel1.Position.Board.Coordinate.GetMemoryArea()
 		var i point.Point = 0
 		for _, c := range string(fileData) {
 			var str = string([]rune{c})
@@ -55,7 +55,7 @@ func (k *Kernel) DoSetBoard(command string, text_io i_text_io.ITextIO, logg *log
 					return
 				}
 
-				k.Position.Board.SetStoneAt(i, stone)
+				kernel1.Position.Board.SetStoneAt(i, stone)
 				i++
 			}
 		}
@@ -68,7 +68,7 @@ func (k *Kernel) DoSetBoard(command string, text_io i_text_io.ITextIO, logg *log
 		}
 
 		// [O23o_2o3o_1o0] 連データベース初期化
-		k.renDb.Init(k.Position.Board.Coordinate.GetWidth(), k.Position.Board.Coordinate.GetHeight())
-		k.FindAllRens()
+		kernel1.RenDb.Init(kernel1.Position.Board.Coordinate.GetWidth(), kernel1.Position.Board.Coordinate.GetHeight())
+		kernel1.FindAllRens()
 	}
 }

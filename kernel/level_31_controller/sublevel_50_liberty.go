@@ -22,11 +22,11 @@ import (
 // -------
 // - *Ren is ren or nil
 // - bool is found
-func (k *Kernel) GetLiberty(arbitraryPoint point.Point) (*rentype.Ren, bool) {
+func (kernel1 *Kernel) GetLiberty(arbitraryPoint point.Point) (*rentype.Ren, bool) {
 	// チェックボードの初期化
-	k.Position.CheckBoard.Init(k.Position.Board.Coordinate)
+	kernel1.Position.CheckBoard.Init(kernel1.Position.Board.Coordinate)
 
-	var libertySearchAlgorithm = liberty_search_algorithm.NewLibertySearchAlgorithm(k.Position.Board, k.Position.CheckBoard)
+	var libertySearchAlgorithm = liberty_search_algorithm.NewLibertySearchAlgorithm(kernel1.Position.Board, kernel1.Position.CheckBoard)
 
 	return libertySearchAlgorithm.FindRen(arbitraryPoint)
 }

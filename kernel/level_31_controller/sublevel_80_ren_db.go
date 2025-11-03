@@ -25,7 +25,7 @@ import (
 )
 
 // LoadRenDb - [O12o__11o__10o5o__10o_10o0] 連データベースの外部ファイル読取
-func (k *Kernel) LoadRenDb(path string, onError func(error) bool) bool {
+func (kernel1 *Kernel) LoadRenDb(path string, onError func(error) bool) bool {
 	// ファイル読込
 	var binary, errA = os.ReadFile(path)
 	if errA != nil {
@@ -40,19 +40,19 @@ func (k *Kernel) LoadRenDb(path string, onError func(error) bool) bool {
 
 	// 外部ファイルからの入力を、内部状態へ適用
 	for _, ren := range db.Rens {
-		var isOk = k.RefreshRenToInternal(ren)
+		var isOk = kernel1.RefreshRenToInternal(ren)
 		if !isOk {
 			return false
 		}
 	}
 
 	// 差し替え
-	k.renDb = db
+	kernel1.RenDb = db
 	return true
 }
 
 // RefreshRenToInternal - TODO 外部ファイルから入力された内容を内部状態に適用します
-func (k *Kernel) RefreshRenToInternal(r *rentype.Ren) bool {
+func (kernel1 *Kernel) RefreshRenToInternal(r *rentype.Ren) bool {
 	{
 		var getDefaultStone = func() (bool, stone.Stone) {
 			panic(fmt.Sprintf("unexpected stone:%s", r.Sto))
@@ -74,7 +74,7 @@ func (k *Kernel) RefreshRenToInternal(r *rentype.Ren) bool {
 
 			var numbers = []point.Point{}
 			for _, code := range codes {
-				var location = k.Position.Board.Coordinate.GetPointFromGtpMove(code)
+				var location = kernel1.Position.Board.Coordinate.GetPointFromGtpMove(code)
 				numbers = append(numbers, location)
 			}
 
@@ -89,7 +89,7 @@ func (k *Kernel) RefreshRenToInternal(r *rentype.Ren) bool {
 
 			var numbers = []point.Point{}
 			for _, code := range codes {
-				var location = k.Position.Board.Coordinate.GetPointFromGtpMove(code)
+				var location = kernel1.Position.Board.Coordinate.GetPointFromGtpMove(code)
 				numbers = append(numbers, location)
 			}
 
@@ -101,10 +101,10 @@ func (k *Kernel) RefreshRenToInternal(r *rentype.Ren) bool {
 }
 
 // RemoveRen - 石の連を打ち上げます
-func (k *Kernel) RemoveRen(ren *rentype.Ren) {
+func (kernel1 *Kernel) RemoveRen(ren *rentype.Ren) {
 	// 空点をセット
 	var setLocation = func(i int, location point.Point) {
-		k.Position.Board.SetStoneAt(location, stone.Stone_Space)
+		kernel1.Position.Board.SetStoneAt(location, stone.Stone_Space)
 	}
 
 	// 場所毎に
@@ -113,21 +113,21 @@ func (k *Kernel) RemoveRen(ren *rentype.Ren) {
 
 // FindAllRens - [O23o_2o1o0] 盤上の全ての連を見つけます
 // * 見つけた連は、連データベースへ入れます
-func (k *Kernel) FindAllRens() {
+func (kernel1 *Kernel) FindAllRens() {
 	// チェックボードの初期化
-	k.Position.CheckBoard.Init(k.Position.Board.Coordinate)
+	kernel1.Position.CheckBoard.Init(kernel1.Position.Board.Coordinate)
 
-	var maxPosNthFigure = k.Record.GetMaxPosNthFigure()
+	var maxPosNthFigure = kernel1.Record.GetMaxPosNthFigure()
 
 	var setLocation = func(location point.Point) {
 
-		var libertySearchAlgorithm = liberty_search_algorithm.NewLibertySearchAlgorithm(k.Position.Board, k.Position.CheckBoard)
+		var libertySearchAlgorithm = liberty_search_algorithm.NewLibertySearchAlgorithm(kernel1.Position.Board, kernel1.Position.CheckBoard)
 		var ren, isFound = libertySearchAlgorithm.FindRen(location)
 
 		if isFound {
-			k.renDb.RegisterRen(maxPosNthFigure, k.Record.MovesNum1, ren)
+			kernel1.RenDb.RegisterRen(maxPosNthFigure, kernel1.Record.MovesNum1, ren)
 		}
 	}
 	// 盤上の枠の内側をスキャン。筋、段の順
-	k.Position.Board.GetCoordinate().ForeachPayloadLocationOrderByYx(setLocation)
+	kernel1.Position.Board.GetCoordinate().ForeachPayloadLocationOrderByYx(setLocation)
 }
