@@ -91,7 +91,7 @@ func main() {
 	// ロガーのテスト
 	// コマンドライン例： `go run . welcome`
 	case "welcome":
-		text_io1.GoCommand(fmt.Sprintf("Welcome! name:'%s' weight:%.1f x:%d", "nihon taro", 92.6, 3))
+		text_io1.SendCommand(fmt.Sprintf("Welcome! name:'%s' weight:%.1f x:%d", "nihon taro", 92.6, 3))
 		log1.J.Infow("Welcome!",
 			"name", "nihon taro", "weight", 92.6, "x", 3)
 

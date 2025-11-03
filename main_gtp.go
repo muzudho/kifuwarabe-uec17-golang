@@ -23,7 +23,7 @@ func LoopGTP(text_io1 i_text_io.ITextIO, log1 *logger.Logger, engineConfig *Conf
 	// [O12o__11o_4o0] 棋譜の初期化に利用
 	var onUnknownTurn = func() stone.Stone {
 		var errMsg = fmt.Sprintf("? unexpected play_first:%s", engineConfig.GetPlayFirst())
-		text_io1.GoCommand(errMsg)
+		text_io1.SendCommand(errMsg)
 		log1.J.Infow("error", "play_first", engineConfig.GetPlayFirst())
 		panic(errMsg)
 	}
@@ -40,11 +40,7 @@ func LoopGTP(text_io1 i_text_io.ITextIO, log1 *logger.Logger, engineConfig *Conf
 	// [O11o_1o0] コンソール等からの文字列入力
 	for virtualIo.ScannerScan() {
 		var command = virtualIo.ScannerText()
-
-		// FIXME: 大会の邪魔になるのでは？
-		//text_io.GoCommand(fmt.Sprintf("# %s", command))             // 人間向けの出力
-
-		log1.J.Infow("input", "command", command) // コンピューター向けの出力
+		text_io1.ReceivedCommand(command)
 
 		// [O11o_3o0]
 		var isHandled = kernel1.ReadCommand(command, text_io1, log1)
@@ -67,7 +63,7 @@ func LoopGTP(text_io1 i_text_io.ITextIO, log1 *logger.Logger, engineConfig *Conf
 		// -------------------------
 
 		default: // [O11o_1o0]
-			text_io1.GoCommand(fmt.Sprintf("? unknown_command command:'%s'\n", tokens[0]))
+			text_io1.SendCommand(fmt.Sprintf("? unknown_command command:'%s'\n", tokens[0]))
 			log1.J.Infow("? unknown_command", "command", tokens[0])
 		}
 	}

@@ -18,7 +18,14 @@ func NewTextIO(log1 *logger.Logger) *TextIO {
 	return t
 }
 
-func (t *TextIO) GoCommand(command string) {
+func (t *TextIO) SendCommand(command string) {
 	fmt.Print(command)
 	//t.log1.C.Info(command)
+}
+
+func (t *TextIO) ReceivedCommand(command string) {
+	// FIXME: 大会の邪魔になるのでは？
+	//text_io.SendCommand(fmt.Sprintf("# %s", command))	// 人間向けの出力
+
+	t.log1.J.Infow("input", "command", command)
 }

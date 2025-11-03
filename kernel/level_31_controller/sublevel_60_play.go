@@ -36,7 +36,7 @@ func (k *Kernel) DoPlay(command string, text_io i_text_io.ITextIO, log1 *logger.
 	var stoneName = tokens[1]
 
 	var getDefaultStone = func() (bool, stone.Stone) {
-		text_io.GoCommand(fmt.Sprintf("? unexpected stone:%s\n", stoneName))
+		text_io.SendCommand(fmt.Sprintf("? unexpected stone:%s\n", stoneName))
 		log1.J.Infow("error", "stone", stoneName)
 		return false, stone.Stone_Space
 	}
@@ -52,28 +52,28 @@ func (k *Kernel) DoPlay(command string, text_io i_text_io.ITextIO, log1 *logger.
 
 	// [O22o1o2o0] 石（または枠）の上に石を置こうとした
 	var onMasonry = func() bool {
-		text_io.GoCommand(fmt.Sprintf("? masonry my_stone:%s placePlay:%s\n", stone, k.Position.Board.Coordinate.GetGtpMoveFromPoint(placePlay)))
+		text_io.SendCommand(fmt.Sprintf("? masonry my_stone:%s placePlay:%s\n", stone, k.Position.Board.Coordinate.GetGtpMoveFromPoint(placePlay)))
 		log1.J.Infow("error masonry", "my_stone", stone, "placePlay", k.Position.Board.Coordinate.GetGtpMoveFromPoint(placePlay))
 		return false
 	}
 
 	// [O22o3o1o0] 相手の眼に石を置こうとした
 	var onOpponentEye = func() bool {
-		text_io.GoCommand(fmt.Sprintf("? opponent_eye my_stone:%s placePlay:%s\n", stone, k.Position.Board.Coordinate.GetGtpMoveFromPoint(placePlay)))
+		text_io.SendCommand(fmt.Sprintf("? opponent_eye my_stone:%s placePlay:%s\n", stone, k.Position.Board.Coordinate.GetGtpMoveFromPoint(placePlay)))
 		log1.J.Infow("error opponent_eye", "my_stone", stone, "placePlay", k.Position.Board.Coordinate.GetGtpMoveFromPoint(placePlay))
 		return false
 	}
 
 	// [O22o4o1o0] 自分の眼に石を置こうとした
 	var onForbiddenMyEye = func() bool {
-		text_io.GoCommand(fmt.Sprintf("? my_eye my_stone:%s placePlay:%s\n", stone, k.Position.Board.Coordinate.GetGtpMoveFromPoint(placePlay)))
+		text_io.SendCommand(fmt.Sprintf("? my_eye my_stone:%s placePlay:%s\n", stone, k.Position.Board.Coordinate.GetGtpMoveFromPoint(placePlay)))
 		log1.J.Infow("error my_eye", "my_stone", stone, "placePlay", k.Position.Board.Coordinate.GetGtpMoveFromPoint(placePlay))
 		return false
 	}
 
 	// [O22o7o2o0] コウに石を置こうとした
 	var onKo = func() bool {
-		text_io.GoCommand(fmt.Sprintf("? ko my_stone:%s placePlay:%s\n", stone, k.Position.Board.Coordinate.GetGtpMoveFromPoint(placePlay)))
+		text_io.SendCommand(fmt.Sprintf("? ko my_stone:%s placePlay:%s\n", stone, k.Position.Board.Coordinate.GetGtpMoveFromPoint(placePlay)))
 		log1.J.Infow("error ko", "my_stone", stone, "placePlay", k.Position.Board.Coordinate.GetGtpMoveFromPoint(placePlay))
 		return false
 	}
@@ -89,7 +89,7 @@ func (k *Kernel) DoPlay(command string, text_io i_text_io.ITextIO, log1 *logger.
 		onKo)
 
 	if isOk {
-		text_io.GoCommand("=\n")
+		text_io.SendCommand("=\n")
 		log1.J.Infow("ok")
 	}
 }

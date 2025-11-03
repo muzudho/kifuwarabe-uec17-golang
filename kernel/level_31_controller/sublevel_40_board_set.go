@@ -32,7 +32,7 @@ func (k *Kernel) DoSetBoard(command string, text_io i_text_io.ITextIO, logg *log
 
 		var fileData, err = os.ReadFile(filePath)
 		if err != nil {
-			text_io.GoCommand(fmt.Sprintf("? unexpected file:%s\n", filePath))
+			text_io.SendCommand(fmt.Sprintf("? unexpected file:%s\n", filePath))
 			logg.J.Infow("error", "file", filePath)
 			return
 		}
@@ -50,7 +50,7 @@ func (k *Kernel) DoSetBoard(command string, text_io i_text_io.ITextIO, logg *log
 			if isOk {
 				if size <= int(i) {
 					// 配列サイズ超過
-					text_io.GoCommand(fmt.Sprintf("? board out of bounds i:%d size:%d\n", i, size))
+					text_io.SendCommand(fmt.Sprintf("? board out of bounds i:%d size:%d\n", i, size))
 					logg.J.Infow("error board out of bounds", "i", i, "size", size)
 					return
 				}
@@ -62,7 +62,7 @@ func (k *Kernel) DoSetBoard(command string, text_io i_text_io.ITextIO, logg *log
 
 		// サイズが足りていないなら、エラー
 		if int(i) != size {
-			text_io.GoCommand(fmt.Sprintf("? not enough size i:%d size:%d\n", i, size))
+			text_io.SendCommand(fmt.Sprintf("? not enough size i:%d size:%d\n", i, size))
 			logg.J.Infow("error not enough size", "i", i, "size", size)
 			return
 		}
