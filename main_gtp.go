@@ -48,7 +48,6 @@ func LoopGTP(text_io1 i_text_io.ITextIO, log1 *logger.Logger, engineConfig *Conf
 		var command = virtualIo.ScannerText()
 		text_io1.ReceivedCommand(command)
 
-		// [O11o_1o0]
 		var tokens = strings.Split(command, " ")
 		switch tokens[0] {
 
@@ -62,8 +61,7 @@ func LoopGTP(text_io1 i_text_io.ITextIO, log1 *logger.Logger, engineConfig *Conf
 			// 最初の１個は頭に "= " を付ける必要があってめんどくさいので先に出力
 			text_io1.SendCommand("= quit\n")
 
-			items := []string{"name", "version", "protocol_version", "list_commands", "komi"}
-			// for rangeでループ。各行出力
+			items := []string{"boardsize", "komi", "list_commands", "name", "protocol_version", "version"}
 			for _, item := range items {
 				text_io1.SendCommand(fmt.Sprintf("%s\n", item))
 			}
