@@ -1,7 +1,7 @@
 package ren_db_doc_header
 
-// Level 2
-import "github.com/muzudho/kifuwarabe-uec17-golang-from-uec14/kernel/level_2_conceptual/sublevel_2/board_coordinate"
+// Entities
+import board_coordinate "github.com/muzudho/kifuwarabe-uec17-golang-from-uec14/kernel/implementations/part_1_entities/chapter_1_go_conceptual/section_2/board_coordinate"
 
 // RenDbDocHeader - ヘッダー
 type RenDbDocHeader struct {
