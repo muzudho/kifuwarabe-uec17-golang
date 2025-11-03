@@ -10,11 +10,16 @@ import (
 
 	dbg "github.com/muzudho/kifuwarabe-uec17-golang-from-uec14/debugger"
 
+	// Interfaces
+	i_text_i_o "github.com/muzudho/kifuwarabe-uec17-golang-from-uec14/kernel/interfaces/part_1_facility/chapter_1_i_o/i_text_i_o"
+
+	// Part 1
+	text_i_o "github.com/muzudho/kifuwarabe-uec17-golang-from-uec14/kernel/part_1_facility/chapter_1_i_o/section_2/text_i_o"
+
 	// Section 1.1.1
 	logger "github.com/muzudho/kifuwarabe-uec17-golang-from-uec14/kernel/part_1_facility/chapter_1_i_o/section_1/logger"
 
 	// Section 1.1.2
-	text_i_o "github.com/muzudho/kifuwarabe-uec17-golang-from-uec14/kernel/part_1_facility/chapter_1_i_o/section_2/text_i_o"
 
 	// Level 2.1
 	komi_float "github.com/muzudho/kifuwarabe-uec17-golang-from-uec14/kernel/level_2_conceptual/sublevel_1/komi_float"
@@ -84,7 +89,8 @@ func main() {
 	// 思考エンジンの準備　＞　テキストＩＯ
 	// ========================================
 
-	var text_i_o = text_i_o.NewTextIO(log1)
+	var text_i_o1 i_text_i_o.ITextIO
+	text_i_o1 = text_i_o.NewTextIO(log1)
 
 	// ========================================
 	// コマンドラインの第一引数で処理を振り分ける
@@ -99,7 +105,7 @@ func main() {
 	// ロガーのテスト
 	// コマンドライン例： `go run . welcome`
 	case "welcome":
-		text_i_o.GoCommand(fmt.Sprintf("Welcome! name:'%s' weight:%.1f x:%d", "nihon taro", 92.6, 3))
+		text_i_o1.GoCommand(fmt.Sprintf("Welcome! name:'%s' weight:%.1f x:%d", "nihon taro", 92.6, 3))
 		log1.J.Infow("Welcome!",
 			"name", "nihon taro", "weight", 92.6, "x", 3)
 
@@ -112,7 +118,7 @@ func main() {
 		// [O12o__11o_4o0] 棋譜の初期化に利用
 		var onUnknownTurn = func() stone.Stone {
 			var errMsg = fmt.Sprintf("? unexpected play_first:%s", engineConfig.GetPlayFirst())
-			text_i_o.GoCommand(errMsg)
+			text_i_o1.GoCommand(errMsg)
 			log1.J.Infow("error", "play_first", engineConfig.GetPlayFirst())
 			panic(errMsg)
 		}
@@ -136,7 +142,7 @@ func main() {
 			log1.J.Infow("input", "command", command) // コンピューター向けの出力
 
 			// [O11o_3o0]
-			var isHandled = kernel1.ReadCommand(command, text_i_o, log1)
+			var isHandled = kernel1.ReadCommand(command, text_i_o1, log1)
 			if isHandled {
 				continue
 			}
@@ -156,7 +162,7 @@ func main() {
 			// -------------------------
 
 			default: // [O11o_1o0]
-				text_i_o.GoCommand(fmt.Sprintf("? unknown_command command:'%s'\n", tokens[0]))
+				text_i_o1.GoCommand(fmt.Sprintf("? unknown_command command:'%s'\n", tokens[0]))
 				log1.J.Infow("? unknown_command", "command", tokens[0])
 			}
 		}

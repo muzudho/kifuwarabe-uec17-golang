@@ -7,10 +7,10 @@ import (
 	"strings"
 
 	// Section 1.1.1
+	"github.com/muzudho/kifuwarabe-uec17-golang-from-uec14/kernel/interfaces/part_1_facility/chapter_1_i_o/i_text_i_o"
 	logger "github.com/muzudho/kifuwarabe-uec17-golang-from-uec14/kernel/part_1_facility/chapter_1_i_o/section_1/logger"
 
 	// Section 1.1.2
-	text_i_o "github.com/muzudho/kifuwarabe-uec17-golang-from-uec14/kernel/part_1_facility/chapter_1_i_o/section_2/text_i_o"
 
 	// Level 2.1
 	geta "github.com/muzudho/kifuwarabe-uec17-golang-from-uec14/kernel/level_2_conceptual/sublevel_1/geta"
@@ -74,7 +74,7 @@ func NewDirtyKernel(gameRuleSettings game_rule_settings.GameRuleSettings, boardW
 // -------
 // isHandled : bool
 // 正常終了またはエラーなら真、無視したら偽
-func (k *Kernel) ReadCommand(command string, text_i_o *text_i_o.TextIO, log1 *logger.Logger) bool {
+func (k *Kernel) ReadCommand(command string, text_i_o i_text_i_o.ITextIO, log1 *logger.Logger) bool {
 
 	var tokens = strings.Split(command, " ")
 	switch tokens[0] {

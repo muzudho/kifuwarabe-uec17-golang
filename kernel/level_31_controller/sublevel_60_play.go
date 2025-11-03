@@ -8,10 +8,10 @@ import (
 	"strings"
 
 	// Section 1.1.1
+	"github.com/muzudho/kifuwarabe-uec17-golang-from-uec14/kernel/interfaces/part_1_facility/chapter_1_i_o/i_text_i_o"
 	logger "github.com/muzudho/kifuwarabe-uec17-golang-from-uec14/kernel/part_1_facility/chapter_1_i_o/section_1/logger"
 
 	// Section 1.1.2
-	text_i_o "github.com/muzudho/kifuwarabe-uec17-golang-from-uec14/kernel/part_1_facility/chapter_1_i_o/section_2/text_i_o"
 
 	// Level 2.1
 	point "github.com/muzudho/kifuwarabe-uec17-golang-from-uec14/kernel/level_2_conceptual/sublevel_1/point"
@@ -31,7 +31,7 @@ import (
 // * `command` - Example: `play black A19`
 // ........................---- ----- ---
 // ........................0    1     2
-func (k *Kernel) DoPlay(command string, text_i_o *text_i_o.TextIO, log1 *logger.Logger) {
+func (k *Kernel) DoPlay(command string, text_i_o i_text_i_o.ITextIO, log1 *logger.Logger) {
 	var tokens = strings.Split(command, " ")
 	var stoneName = tokens[1]
 

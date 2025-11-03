@@ -8,8 +8,8 @@ import (
 	"strings"
 
 	// Section 1.1.1
+	"github.com/muzudho/kifuwarabe-uec17-golang-from-uec14/kernel/interfaces/part_1_facility/chapter_1_i_o/i_text_i_o"
 	logger "github.com/muzudho/kifuwarabe-uec17-golang-from-uec14/kernel/part_1_facility/chapter_1_i_o/section_1/logger"
-	text_i_o "github.com/muzudho/kifuwarabe-uec17-golang-from-uec14/kernel/part_1_facility/chapter_1_i_o/section_2/text_i_o"
 
 	// Level 1
 	point "github.com/muzudho/kifuwarabe-uec17-golang-from-uec14/kernel/level_2_conceptual/sublevel_1/point"
@@ -24,7 +24,7 @@ import (
 // * `command` - Example: `board_set file data/board1.txt`
 // ........................--------- ---- ---------------
 // ........................0         1    2
-func (k *Kernel) DoSetBoard(command string, text_i_o *text_i_o.TextIO, logg *logger.Logger) {
+func (k *Kernel) DoSetBoard(command string, text_i_o i_text_i_o.ITextIO, logg *logger.Logger) {
 	var tokens = strings.Split(command, " ")
 
 	if tokens[1] == "file" {
