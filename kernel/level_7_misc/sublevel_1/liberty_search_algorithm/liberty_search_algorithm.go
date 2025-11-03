@@ -1,8 +1,8 @@
 package liberty_search_algorithm
 
 import (
-	// Level 2.1
-	point "github.com/muzudho/kifuwarabe-uec17-golang-from-uec14/kernel/level_2_conceptual/sublevel_1/point"
+	// Entities
+	point "github.com/muzudho/kifuwarabe-uec17-golang-from-uec14/kernel/implementations/part_1_entities/chapter_1_go_conceptual/section_1/point"
 
 	// Level 2.2
 	board_coordinate "github.com/muzudho/kifuwarabe-uec17-golang-from-uec14/kernel/level_2_conceptual/sublevel_2/board_coordinate"

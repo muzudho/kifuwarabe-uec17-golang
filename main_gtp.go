@@ -5,6 +5,11 @@ import (
 	"math"
 	"strconv"
 
+	// Entities
+	komi_float "github.com/muzudho/kifuwarabe-uec17-golang-from-uec14/kernel/implementations/part_1_entities/chapter_1_go_conceptual/section_1/komi_float"
+	moves_num "github.com/muzudho/kifuwarabe-uec17-golang-from-uec14/kernel/implementations/part_1_entities/chapter_1_go_conceptual/section_1/moves_num"
+	point "github.com/muzudho/kifuwarabe-uec17-golang-from-uec14/kernel/implementations/part_1_entities/chapter_1_go_conceptual/section_1/point"
+
 	i_text_io "github.com/muzudho/kifuwarabe-uec17-golang-from-uec14/kernel/interfaces/part_1_facility/chapter_1_io/section_1/i_text_io"
 	stone "github.com/muzudho/kifuwarabe-uec17-golang-from-uec14/kernel/level_3_physical/sublevel_1/stone"
 
@@ -15,12 +20,9 @@ import (
 	logger "github.com/muzudho/kifuwarabe-uec17-golang-from-uec14/kernel/implementations/part_7_presenter/chapter_1_io/section_1/logger"
 
 	"github.com/muzudho/kifuwarabe-uec17-golang-from-uec14/kernel/level_2_conceptual/sublevel_1/geta"
-	moves_num "github.com/muzudho/kifuwarabe-uec17-golang-from-uec14/kernel/level_2_conceptual/sublevel_1/moves_num"
-	"github.com/muzudho/kifuwarabe-uec17-golang-from-uec14/kernel/level_2_conceptual/sublevel_1/point"
 
 	"strings"
 
-	komi_float "github.com/muzudho/kifuwarabe-uec17-golang-from-uec14/kernel/level_2_conceptual/sublevel_1/komi_float"
 	board_coordinate "github.com/muzudho/kifuwarabe-uec17-golang-from-uec14/kernel/level_2_conceptual/sublevel_2/board_coordinate"
 	record_item "github.com/muzudho/kifuwarabe-uec17-golang-from-uec14/kernel/level_6_database/sublevel_1/record_item"
 )

@@ -1,7 +1,8 @@
 package level_31_controller
 
 import (
-	moves_num "github.com/muzudho/kifuwarabe-uec17-golang-from-uec14/kernel/level_2_conceptual/sublevel_1/moves_num"
+	// Entities
+	moves_num "github.com/muzudho/kifuwarabe-uec17-golang-from-uec14/kernel/implementations/part_1_entities/chapter_1_go_conceptual/section_1/moves_num"
 
 	// Level 3.1
 	stone "github.com/muzudho/kifuwarabe-uec17-golang-from-uec14/kernel/level_3_physical/sublevel_1/stone"

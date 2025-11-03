@@ -1,8 +1,8 @@
 package level_31_controller
 
 import (
-	// Level 2.1
-	point "github.com/muzudho/kifuwarabe-uec17-golang-from-uec14/kernel/level_2_conceptual/sublevel_1/point"
+	// Entities
+	point "github.com/muzudho/kifuwarabe-uec17-golang-from-uec14/kernel/implementations/part_1_entities/chapter_1_go_conceptual/section_1/point"
 
 	// Level 4.1
 	rentype "github.com/muzudho/kifuwarabe-uec17-golang-from-uec14/kernel/level_4_game_rule/sublevel_1/ren"
