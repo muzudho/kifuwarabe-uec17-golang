@@ -94,6 +94,11 @@ func GetColorOrDefaultFromTurn(colorName string, getDefaultColor func() Color) C
 	}
 }
 
+// Flip - 白黒反転させます。
+func (c Color) Flip() Color {
+	return 3 - c
+}
+
 // GetAdded - 色の加算。上書きはできない
 func (c1 Color) GetAdded(c2 Color) Color {
 	switch c1 {
